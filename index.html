@@ -197,6 +197,25 @@ function esc(v){
 <script>
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const API='';
+const SUPABASE_URL = "https://zlixgafnbsuoekwngtbl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NARzN9jNZ6jjGGYjI5DF_g_BbmjL2H5";
+
+async function supabaseRpc(functionName, body){
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`, {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "apikey":SUPABASE_PUBLISHABLE_KEY
+    },
+    body:JSON.stringify(body || {})
+  });
+  let data=null;
+  try{ data=await r.json(); }catch(_){
+    data=null;
+  }
+  if(!r.ok) throw new Error((data&&(data.message||data.error||data.hint))||"تعذر الاتصال بقاعدة البيانات.");
+  return data;
+}
 function normalize(v){return String(v??'').trim().replace(/\s+/g,' ')}
 function validPassport(v){return /^A\d{8}$/i.test(normalize(v));}
 function validPhone(v){return /^01\d{9}$/.test(normalize(v));}
@@ -210,7 +229,16 @@ $('#bookForm').onsubmit=async e=>{
  if(!validPassport(x.passport))return $('#bookMsg').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
  if(!validPhone(x.phone))return $('#bookMsg').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
  if(x.booking_date&&x.exam_date&&x.exam_date<x.booking_date)return $('#bookMsg').innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
- try{const r=await fetch(API+'/api/appointments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});const d=await r.json();if(!r.ok)throw new Error(d.error||'تعذر حفظ الموعد');e.target.reset();$('#bookMsg').innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(d.ticket)}</strong></div>`;}catch(err){$('#bookMsg').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
+ try{
+    const d=await supabaseRpc('create_appointment',{
+      p_name:x.name,p_passport:x.passport,p_phone:x.phone,
+      p_booking_date:x.booking_date,p_exam_date:x.exam_date,
+      p_destination:x.destination,p_status:x.status
+    });
+    const row=Array.isArray(d)?d[0]:d;
+    e.target.reset();
+    $('#bookMsg').innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(row.ticket)}</strong></div>`;
+  }catch(err){$('#bookMsg').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
 };
 async function searchAppointment(){
  const q=normalize($('#query').value); if(!q)return $('#result').innerHTML='<div class="notice error">أدخل رقم الجواز أو الهاتف أو رقم التذكرة.</div>';
@@ -218,7 +246,11 @@ async function searchAppointment(){
  if(/^A/i.test(q)&&!validPassport(q))return $('#result').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
  if(/^MC/i.test(q)&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">رقم التذكرة غير صحيح. يجب أن يبدأ بـ mc ويتبعه 11 رقمًا.</div>';
  if(/^\d+$/.test(q)&&!validPhone(q))return $('#result').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
- try{const r=await fetch(API+'/api/appointments/search?q='+encodeURIComponent(q));const x=await r.json();if(!r.ok)throw new Error(x.error||'لا يوجد حجز مطابق');window.currentAppointment=x;
+ try{
+ const d=await supabaseRpc('search_appointment',{p_query:q});
+ const x=Array.isArray(d)?d[0]:d;
+ if(!x)throw new Error('لا يوجد حجز مطابق');
+ window.currentAppointment=x;
  $('#result').innerHTML=`<div class="result card"><div class="resultTop"><div><b>بيانات الموعد</b><div class="tiny">تم العثور على السجل المطلوب</div></div><span class="status">${esc(x.status||'تم الحجز')}</span></div><div class="columns"><div class="panel"><h3>بيانات صاحب الموعد</h3><div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div><div class="row"><span>رقم الجواز</span><b>${esc(x.passport)}</b></div><div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div></div><div class="panel"><h3>تفاصيل الموعد</h3><div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div><div class="row"><span>تاريخ الموعد</span><b>${esc(x.exam_date)}</b></div><div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place)}</b></div><div class="row"><span>الدولة المسافر إليها</span><b>${esc(x.destination)}</b></div><div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div><div class="row"><span>المبلغ المدفوع</span><b>${esc(x.payment)} جنيه</b></div></div></div><div class="ticketAction"><button class="primary" onclick="downloadTicketPDF()">تحميل التذكرة PDF</button></div></div>`;
  }catch(err){$('#result').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
 }
