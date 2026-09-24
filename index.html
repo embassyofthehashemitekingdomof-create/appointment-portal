@@ -7,10 +7,11 @@
 <style>
 :root{--navy:#071d35;--blue:#0b3c68;--blue2:#125b91;--red:#b21f2d;--gold:#d4aa42;--bg:#f5f7fa;--ink:#17283b;--muted:#718196;--line:#dce4ec;--white:#fff;--green:#16865f}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,Arial,sans-serif}
-.top{background:linear-gradient(135deg,#06192d,#0c3d68 60%,#092e50);color:#fff;padding:18px 5%;box-shadow:0 5px 20px #00152b35}
+.top{background:linear-gradient(135deg,#041525 0%,#082d4e 58%,#0a416d 100%);color:#fff;padding:20px 5%;box-shadow:0 7px 24px #00152b35}
 .topin{max-width:1380px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:15px}.flagmark{width:58px;height:44px;position:relative;background:linear-gradient(#fff 0 33%,#111 33% 66%,#19834b 66%);border-radius:5px;overflow:hidden;box-shadow:0 0 0 1px #ffffff35}.flagmark:before{content:"";position:absolute;inset:0 auto 0 0;border-top:22px solid transparent;border-bottom:22px solid transparent;border-left:34px solid #9f1825}.flagmark:after{content:"★";position:absolute;left:10px;top:12px;color:#fff;font-size:12px}
-.brand b{font-size:23px;display:block}.brand span{font-size:12px;color:#c8d7e6}.topTitle{text-align:left}.topTitle b{display:block;font-size:25px}.topTitle span{font-size:13px;color:#c8d7e6}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}.flagmark{width:92px;height:62px;flex:0 0 92px;border-radius:9px;overflow:hidden;box-shadow:0 4px 14px #0005,0 0 0 2px #ffffff45;background:#fff}
+.flagmark svg{display:block;width:100%;height:100%}
+.brand b{font-size:28px;line-height:1.35;display:block;letter-spacing:.1px}.brand span{font-size:13px;color:#d8e6f2;display:block;margin-top:4px}.topTitle{text-align:left}.topTitle b{display:block;font-size:25px}.topTitle span{font-size:13px;color:#c8d7e6}
 .nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.navin{max-width:1380px;margin:auto;display:flex;justify-content:flex-start;gap:4px}.nav button{border:0;background:transparent;padding:19px 24px;font-size:15px;font-weight:700;color:#586b80;border-bottom:3px solid transparent;cursor:pointer}.nav button.active,.nav button:hover{color:var(--blue2);border-bottom-color:var(--gold)}
 main{max-width:1180px;margin:34px auto;padding:0 18px}.view{display:none}.view.active{display:block}
 .hero{background:linear-gradient(125deg,#fff,#f1f6fa);border:1px solid var(--line);border-radius:18px;padding:44px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 15px 35px #0a315010}.hero h1{font-size:37px;margin:5px 0 13px;color:#102e4d}.hero p{color:var(--muted);font-size:16px;line-height:2;max-width:700px}.badge{display:inline-flex;gap:7px;align-items:center;background:#eef5fa;color:var(--blue);padding:7px 12px;border-radius:30px;font-size:12px;font-weight:800}.heroSymbol{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#fff 0 52%,#e8f0f6 53% 100%);display:grid;place-items:center;font-size:85px;border:1px solid #d8e4ed}
@@ -76,13 +77,34 @@ main{max-width:1240px;margin:30px auto;padding:0 18px}
 .footer{background:linear-gradient(135deg,#050e18,#0c2c46);margin-top:65px;padding:30px;font-size:12px}
 /* search result destination chip */
 .destinationBox{margin-top:18px;border:1px solid #e6d7b3;background:linear-gradient(135deg,#fffaf0,#fff);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}.destinationBox span{color:#806c3b;font-size:12px;font-weight:800}.destinationBox b{color:#163a59;font-size:16px}
-@media(max-width:800px){.hero{padding:32px 24px;min-height:0}.hero h1{font-size:31px}.heroSymbol{display:none}.topTitle{display:none}.nav button{padding:17px 14px}.destinationBox{align-items:flex-start;flex-direction:column}}
+@media(max-width:800px){
+.hero{padding:32px 24px;min-height:0}.hero h1{font-size:31px}.heroSymbol{display:none}.topTitle{display:none}
+.top{padding:15px 18px}.topin{justify-content:center}.brand{gap:12px;width:100%}.flagmark{width:72px;height:49px;flex-basis:72px;border-radius:7px}
+.brand b{font-size:18px;line-height:1.4}.brand span{font-size:11px;margin-top:2px}.nav button{padding:17px 14px}
+.destinationBox{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
 <header class="top"><div class="topin">
-  <div class="brand"><div class="flagmark"></div><div><b>نظام المواعيد</b><span>بوابة إلكترونية لإدارة المواعيد</span></div></div>
-  <div class="topTitle"><b>إدارة وحجز المواعيد</b><span>بوابة إلكترونية لإدارة المواعيد</span></div>
+  <div class="brand">
+    <div class="flagmark" aria-label="علم جمهورية مصر العربية">
+      <svg viewBox="0 0 92 62" role="img" aria-hidden="true">
+        <rect width="92" height="20.67" y="0" fill="#CE1126"/>
+        <rect width="92" height="20.67" y="20.67" fill="#FFFFFF"/>
+        <rect width="92" height="20.66" y="41.34" fill="#000000"/>
+        <g transform="translate(46 31)">
+          <path d="M-5-9 C-8-7-9-3-7 1 L-10 6 L-4 5 L0 10 L4 5 L10 6 L7 1 C9-3 8-7 5-9 C3-6 2-4 0-4 C-2-4-3-6-5-9Z" fill="#C9A227"/>
+          <rect x="-2.2" y="-7" width="4.4" height="15" rx="1" fill="#C9A227"/>
+          <path d="M-11 1 Q-6-2 0 0 Q6-2 11 1 Q6 4 0 2 Q-6 4-11 1Z" fill="#C9A227"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <b>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</b>
+      <span>بوابة إلكترونية لحجز المواعيد والاستعلام عنها</span>
+    </div>
+  </div>
+  <div class="topTitle"><b>حجز واستعلام المواعيد</b><span>خدمات إلكترونية لراغبي السفر للخارج</span></div>
 </div></header>
 
 <nav class="nav"><div class="navin">
@@ -94,7 +116,7 @@ main{max-width:1240px;margin:30px auto;padding:0 18px}
 <div class="egBar"></div><main>
 <section id="home" class="view active">
  <div class="hero card">
-  <div><span class="badge">● خدمات المواعيد الإلكترونية</span><h1>إدارة المواعيد بسهولة واحترافية</h1><p>واجهة حديثة لحجز المواعيد والاستعلام عنها، مع إدارة بيانات المواعيد والاستعلام عنها بسهولة.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn secondary" onclick="showView('search')">الاستعلام عن موعد</button></div></div>
+  <div><span class="badge">● خدمات المواعيد الإلكترونية</span><h1>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</h1><p>بوابة إلكترونية حديثة لحجز مواعيد الكشف الطبي والاستعلام عنها لراغبي السفر للخارج.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn secondary" onclick="showView('search')">الاستعلام عن موعد</button></div></div>
   <div class="heroSymbol">◫<span style="display:block;font-size:12px;margin-top:-45px;letter-spacing:2px;color:#d9b45a">مواعيد • سفر • صحة</span></div>
  
 </div>
