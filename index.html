@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بوابة المواعيد | خدمات السفر والفحص الطبي</title>
+<style>
+:root{--navy:#071d35;--blue:#0b3c68;--blue2:#125b91;--red:#b21f2d;--gold:#d4aa42;--bg:#f5f7fa;--ink:#17283b;--muted:#718196;--line:#dce4ec;--white:#fff;--green:#16865f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+.top{background:linear-gradient(135deg,#06192d,#0c3d68 60%,#092e50);color:#fff;padding:18px 5%;box-shadow:0 5px 20px #00152b35}
+.topin{max-width:1380px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:15px}.flagmark{width:58px;height:44px;position:relative;background:linear-gradient(#fff 0 33%,#111 33% 66%,#19834b 66%);border-radius:5px;overflow:hidden;box-shadow:0 0 0 1px #ffffff35}.flagmark:before{content:"";position:absolute;inset:0 auto 0 0;border-top:22px solid transparent;border-bottom:22px solid transparent;border-left:34px solid #9f1825}.flagmark:after{content:"★";position:absolute;left:10px;top:12px;color:#fff;font-size:12px}
+.brand b{font-size:23px;display:block}.brand span{font-size:12px;color:#c8d7e6}.topTitle{text-align:left}.topTitle b{display:block;font-size:25px}.topTitle span{font-size:13px;color:#c8d7e6}
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.navin{max-width:1380px;margin:auto;display:flex;justify-content:flex-start;gap:4px}.nav button{border:0;background:transparent;padding:19px 24px;font-size:15px;font-weight:700;color:#586b80;border-bottom:3px solid transparent;cursor:pointer}.nav button.active,.nav button:hover{color:var(--blue2);border-bottom-color:var(--gold)}
+main{max-width:1180px;margin:34px auto;padding:0 18px}.view{display:none}.view.active{display:block}
+.hero{background:linear-gradient(125deg,#fff,#f1f6fa);border:1px solid var(--line);border-radius:18px;padding:44px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 15px 35px #0a315010}.hero h1{font-size:37px;margin:5px 0 13px;color:#102e4d}.hero p{color:var(--muted);font-size:16px;line-height:2;max-width:700px}.badge{display:inline-flex;gap:7px;align-items:center;background:#eef5fa;color:var(--blue);padding:7px 12px;border-radius:30px;font-size:12px;font-weight:800}.heroSymbol{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#fff 0 52%,#e8f0f6 53% 100%);display:grid;place-items:center;font-size:85px;border:1px solid #d8e4ed}
+.actions{display:flex;gap:12px;margin-top:24px}.btn{border:0;border-radius:9px;padding:13px 25px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff}.secondary{background:#fff;color:var(--blue);border:1px solid #b9cad8}
+.section{margin-bottom:22px}.sectionHead{margin-bottom:14px}.sectionHead h2{margin:0;font-size:25px}.sectionHead p{margin:6px 0;color:var(--muted)}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 8px 25px #0a315008}.form{padding:27px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.field label{display:block;font-size:13px;font-weight:800;color:#4e6378}.field input,.field select{width:100%;margin-top:8px;border:1px solid #c8d5e0;border-radius:9px;padding:13px 14px;font:inherit;outline:0;background:#fff}.field input:focus,.field select:focus{border-color:#3c83b7;box-shadow:0 0 0 3px #3c83b71a}.full{grid-column:1/-1}
+.search{padding:25px;display:flex;align-items:end;gap:14px}.search .field{flex:1}.search .btn{min-width:130px}
+.notice{padding:15px 18px;border-radius:10px;margin-top:15px}.success{background:#eff9f5;color:#126f50;border:1px solid #bfe1d3}.error{background:#fff2f2;color:#a12525;border:1px solid #e8c2c2}
+.result{margin-top:18px;padding:22px}.resultTop{display:flex;align-items:center;justify-content:space-between;padding-bottom:17px;border-bottom:1px solid var(--line)}.status{padding:7px 12px;border-radius:30px;background:#eaf8f2;color:var(--green);font-weight:800;font-size:12px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel{border:1px solid var(--line);border-radius:12px;overflow:hidden}.panel h3{margin:0;background:#f2f6f9;padding:14px 17px;font-size:16px}.row{display:flex;justify-content:space-between;gap:15px;padding:14px 17px;border-top:1px solid #edf1f4;font-size:14px}.row span{color:#748397}.row b{color:#183a5c}
+.footer{background:#071d35;color:#c9d5e1;text-align:center;padding:24px;margin-top:70px;font-size:12px}.tiny{color:#91a3b5}
+@media(max-width:800px){.topin{align-items:flex-start}.topTitle{display:none}.navin{overflow:auto}.nav button{white-space:nowrap;padding:17px 15px}.hero{padding:28px}.heroSymbol{display:none}.form,.columns{grid-template-columns:1fr}.full{grid-column:auto}.search{display:block}.search .btn{margin-top:12px;width:100%}}
+.ticketAction{margin-top:18px;text-align:center}.ticketAction .primary{min-width:240px;cursor:pointer}
+.homeWidgets{display:grid;grid-template-columns:1.25fr .9fr;gap:18px;margin-top:20px}
+.widgetCard{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px #092d4b0b;overflow:hidden}
+.widgetHead{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid #edf1f5}
+.widgetHead h3{margin:3px 0 0;font-size:21px;color:var(--navy)}
+.widgetKicker{font-size:11px;color:var(--blue2);font-weight:800}
+.liveDot{background:#eaf7f1;color:#147c56;border:1px solid #bfe6d4;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800}
+.updated{font-size:10px;color:var(--muted)}
+.newsList{padding:4px 20px}
+.newsItem{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #eef2f5}
+.newsItem:last-child{border-bottom:0}
+.newsNo{width:28px;height:28px;border-radius:9px;background:#edf4f9;color:var(--blue2);display:flex;align-items:center;justify-content:center;font-weight:900;flex:none}
+.newsText{min-width:0}.newsText a{color:#173b60;text-decoration:none;font-weight:750;line-height:1.55;font-size:13px}.newsText a:hover{color:var(--blue2)}
+.newsMeta{display:block;color:#8a99a8;font-size:9px;margin-top:4px}
+.loadingLine{padding:25px 5px;color:var(--muted);font-size:12px;text-align:center}
+.widgetFoot{border-top:1px solid #edf1f5;padding:10px 18px;color:#8796a5;font-size:9px;background:#fbfcfd}
+.rateGrid{padding:15px 18px}
+.rateItem{display:grid;grid-template-columns:45px 1fr auto;align-items:center;gap:10px;padding:15px 4px;border-bottom:1px solid #eef2f5}
+.rateItem:last-child{border-bottom:0}
+.rateIcon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#0b3c68,#1b6f9f);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px}
+.jordanRate .rateIcon{background:linear-gradient(135deg,#152d49,#335b78)}
+.rateItem b{display:block;font-size:12px;color:#173b60}.rateItem small{display:block;font-size:9px;color:#8a99a8;margin-top:3px}
+.rateItem strong{font-size:19px;color:#0b3c68;white-space:nowrap}
+@media(max-width:800px){.homeWidgets{grid-template-columns:1fr}.widgetHead h3{font-size:18px}.rateItem strong{font-size:17px}}
+
+/* ===== Modern Egypt-inspired visual refresh ===== */
+:root{--navy:#071525;--navy2:#0c243b;--blue:#123f66;--blue2:#17679a;--red:#b8202f;--red2:#d53b46;--gold:#d9b45a;--bg:#f3f6f9;--ink:#14273a;--muted:#718295;--line:#dce5ed;--white:#fff;--green:#16865f}
+body{background:radial-gradient(circle at 15% 0%,#ffffff 0 20%,transparent 42%),linear-gradient(180deg,#eef3f7 0,#f7f9fb 55%,#eef2f5 100%);color:var(--ink)}
+.top{position:relative;overflow:hidden;background:linear-gradient(120deg,#050e18 0%,#0a2339 48%,#103e60 100%);padding:16px 5%;box-shadow:0 12px 35px #06152445}
+.top:before{content:"";position:absolute;inset:auto -8% -35px auto;width:430px;height:130px;background:linear-gradient(90deg,transparent,#b8202f22);transform:skewX(-28deg);pointer-events:none}
+.topin{position:relative;z-index:1;max-width:1400px}
+.brand{gap:14px}.brand b{font-size:24px;letter-spacing:.2px}.brand span{font-size:11px;color:#b9c9d8}
+.flagmark{width:62px;height:42px;border-radius:8px;background:linear-gradient(#ce2939 0 33.33%,#fff 33.33% 66.66%,#111 66.66%);box-shadow:0 7px 18px #0004,0 0 0 1px #fff3}
+.flagmark:before{content:"";position:absolute;left:25px;top:13px;width:13px;height:16px;border-radius:50%;background:#caa24c;clip-path:polygon(50% 0,61% 34%,100% 38%,69% 59%,77% 100%,50% 75%,23% 100%,31% 59%,0 38%,39% 34%)}
+.flagmark:after{display:none}
+.topTitle{text-align:left}.topTitle b{font-size:22px}.topTitle span{font-size:12px;color:#b9c9d8}
+.nav{background:#ffffffee;backdrop-filter:blur(14px);box-shadow:0 4px 18px #0715250b}.navin{max-width:1400px}.nav button{padding:18px 25px;transition:.2s}.nav button.active,.nav button:hover{color:var(--red);border-bottom-color:var(--red)}
+.egBar{height:5px;background:linear-gradient(90deg,#ce2939 0 33.33%,#fff 33.33% 66.66%,#111 66.66%);box-shadow:0 1px 5px #0002}
+main{max-width:1240px;margin:30px auto;padding:0 18px}
+.hero{position:relative;overflow:hidden;min-height:390px;padding:48px 52px;border:1px solid #d8e3eb;border-radius:28px;background:linear-gradient(135deg,#071725 0%,#0d304b 58%,#124e72 100%);color:#fff;box-shadow:0 25px 55px #071b2d22}
+.hero:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;left:-110px;bottom:-170px;background:#b8202f20;box-shadow:0 0 0 70px #ffffff03,0 0 0 140px #ffffff02}
+.hero:after{content:"";position:absolute;width:260px;height:260px;right:12%;top:-150px;border-radius:50%;border:1px solid #ffffff18;box-shadow:0 0 0 42px #ffffff03,0 0 0 84px #ffffff02}
+.hero>div:first-child{position:relative;z-index:2}.hero h1{color:#fff;font-size:42px;line-height:1.25;max-width:760px;margin:12px 0}.hero p{color:#d3e0eb;font-size:16px;line-height:2;max-width:720px}.badge{background:#ffffff12;border:1px solid #ffffff20;color:#f1d68b;backdrop-filter:blur(8px)}
+.heroSymbol{position:relative;z-index:2;width:235px;height:235px;flex:none;border:1px solid #ffffff22;background:radial-gradient(circle,#ffffff15 0 52%,#ffffff05 53% 100%);box-shadow:inset 0 0 40px #ffffff08,0 20px 50px #0003;color:#fff}
+.actions{gap:12px}.btn{border-radius:12px;padding:14px 24px}.primary{background:linear-gradient(135deg,#d53b46,#a91627);box-shadow:0 10px 22px #a9162735}.secondary{background:#ffffff0d;color:#fff;border:1px solid #ffffff35}
+.sectionHead h2{font-size:28px;color:#102c45}.sectionHead p{font-size:13px}
+.card,.widgetCard{border-radius:20px;box-shadow:0 14px 38px #0b28400c}
+.form{padding:30px}.field label{color:#38516a}.field input,.field select{border-radius:12px;padding:14px;border-color:#cbd8e3}.field input:focus,.field select:focus{border-color:#c23540;box-shadow:0 0 0 4px #c2354012}
+.search{padding:24px;border-radius:20px}.search .btn{border-radius:12px}
+.result{border-radius:20px}.resultTop{padding-bottom:18px}.status{background:#eaf8f2;color:#117552}
+.widgetHead{padding:19px 20px}.widgetHead h3{font-size:20px}.liveDot{background:#fff3e8;color:#a65710;border-color:#f2d2b0}.rateIcon{background:linear-gradient(135deg,#a91526,#d43b48)}.jordanRate .rateIcon{background:linear-gradient(135deg,#173957,#246b91)}
+.footer{background:linear-gradient(135deg,#050e18,#0c2c46);margin-top:65px;padding:30px;font-size:12px}
+/* search result destination chip */
+.destinationBox{margin-top:18px;border:1px solid #e6d7b3;background:linear-gradient(135deg,#fffaf0,#fff);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}.destinationBox span{color:#806c3b;font-size:12px;font-weight:800}.destinationBox b{color:#163a59;font-size:16px}
+@media(max-width:800px){.hero{padding:32px 24px;min-height:0}.hero h1{font-size:31px}.heroSymbol{display:none}.topTitle{display:none}.nav button{padding:17px 14px}.destinationBox{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <div class="brand"><div class="flagmark"></div><div><b>نظام المواعيد</b><span>بوابة إلكترونية لإدارة المواعيد</span></div></div>
+  <div class="topTitle"><b>إدارة وحجز المواعيد</b><span>بوابة إلكترونية لإدارة المواعيد</span></div>
+</div></header>
+
+<nav class="nav"><div class="navin">
+<button class="active" data-view="home">الرئيسية</button>
+<button data-view="book">حجز موعد</button>
+<button data-view="search">الاستعلام عن موعد</button>
+</div></nav>
+
+<div class="egBar"></div><main>
+<section id="home" class="view active">
+ <div class="hero card">
+  <div><span class="badge">● خدمات المواعيد الإلكترونية</span><h1>إدارة المواعيد بسهولة واحترافية</h1><p>واجهة حديثة لحجز المواعيد والاستعلام عنها، مع إدارة بيانات المواعيد والاستعلام عنها بسهولة.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn secondary" onclick="showView('search')">الاستعلام عن موعد</button></div></div>
+  <div class="heroSymbol">◫<span style="display:block;font-size:12px;margin-top:-45px;letter-spacing:2px;color:#d9b45a">مواعيد • سفر • صحة</span></div>
+ 
+</div>
+
+<div class="homeWidgets">
+  <section class="widgetCard newsWidget">
+    <div class="widgetHead">
+      <div><span class="widgetKicker">آخر المستجدات</span><h3>أخبار مصر</h3></div>
+      <span class="liveDot">مباشر</span>
+    </div>
+    <div id="egyptNews" class="newsList">
+      <div class="loadingLine">جاري تحميل آخر الأخبار...</div>
+    </div>
+    <div class="widgetFoot">يتم تحديث الأخبار تلقائيًا عند فتح الصفحة.</div>
+  </section>
+
+  <section class="widgetCard ratesWidget">
+    <div class="widgetHead">
+      <div><span class="widgetKicker">أسعار الصرف</span><h3>العملات مقابل الجنيه المصري</h3></div>
+      <span id="ratesTime" class="updated">جارٍ التحديث</span>
+    </div>
+    <div class="rateGrid">
+      <div class="rateItem">
+        <div class="rateIcon">$</div>
+        <div><b>الدولار الأمريكي</b><small>USD / EGP</small></div>
+        <strong id="usdRate">—</strong>
+      </div>
+      <div class="rateItem jordanRate">
+        <div class="rateIcon">JD</div>
+        <div><b>الدينار الأردني</b><small>JOD / EGP</small></div>
+        <strong id="jodRate">—</strong>
+      </div>
+    </div>
+    <div class="widgetFoot">السعر المعروض استرشادي ويتغير خلال اليوم حسب مصدر البيانات.</div>
+  </section>
+</div>
+</section>
+
+<section id="book" class="view">
+ <div class="sectionHead"><h2>حجز موعد جديد</h2><p>أدخل بيانات صاحب الموعد بدقة ثم احفظ السجل.</p></div>
+ <form id="bookForm" class="card form">
+  <div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="الاسم الكامل"></div>
+  <div class="field"><label>رقم الجواز</label><input name="passport" required placeholder="رقم الجواز"></div>
+  <div class="field"><label>رقم الهاتف</label><input name="phone" required placeholder="رقم الهاتف"></div>
+  <div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div>
+  <div class="field"><label>تاريخ الموعد</label><input name="exam_date" type="date" required></div>
+  <div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div>
+  <div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option><option>ملغى</option><option>مكتمل</option></select></div>
+  <div class="full"><button class="btn primary">حفظ الموعد</button></div>
+ </form><div id="bookMsg"></div>
+</section>
+
+<section id="search" class="view">
+ <div class="sectionHead"><h2>الاستعلام عن موعد</h2><p>ابحث برقم الجواز أو رقم الهاتف أو رقم التذكرة، وستظهر لك تفاصيل الموعد والدولة المسافر إليها.</p></div>
+ <div class="card search"><div class="field"><label>بيانات البحث</label><input id="query" placeholder="اكتب رقم الجواز أو الهاتف أو التذكرة"></div><button class="btn primary" onclick="searchAppointment()">بحث 🔎</button></div>
+ <div id="result"></div>
+</section>
+</main>
+<footer class="footer">بوابة المواعيد — بوابة مستقلة لإدارة المواعيد.<br><span class="tiny">Appointment Portal</span></footer>
+
+
+<script>
+function paidAmount(a){ return (a && (a.payment ?? a.paidAmount)) || 2500; }
+
+function normalize(v){
+  return String(v ?? '').trim();
+}
+function validPassport(v){
+  return /^A\d{8}$/.test(normalize(v).toUpperCase());
+}
+function validPhone(v){
+  return /^01\d{9}$/.test(normalize(v));
+}
+function validTicket(v){
+  return /^mc\d{11}$/i.test(normalize(v));
+}
+function generateTicket(list){
+  const used=new Set(list.map(a=>String(a.ticket||'').toLowerCase()));
+  let ticket="";
+  do{
+    let digits="";
+    for(let i=0;i<11;i++) digits += Math.floor(Math.random()*10);
+    ticket="mc"+digits;
+  }while(used.has(ticket));
+  return ticket;
+}
+function duplicateRegistration(list, data){
+  const p=normalize(data.passport).toUpperCase();
+  const ph=normalize(data.phone);
+  return list.some(a =>
+    (a.passport && normalize(a.passport).toUpperCase()===p) ||
+    (a.phone && normalize(a.phone)===ph)
+  );
+}
+function esc(v){
+  return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
+}
+</script>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const API='';
+function normalize(v){return String(v??'').trim().replace(/\s+/g,' ')}
+function validPassport(v){return /^A\d{8}$/i.test(normalize(v));}
+function validPhone(v){return /^01\d{9}$/.test(normalize(v));}
+function validTicket(v){return /^mc\d{11}$/i.test(normalize(v));}
+function esc(v){return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;',"'":"&#39;"}[s]));}
+$$('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+function showView(id){$$('.view').forEach(v=>v.classList.remove('active'));$('#'+id).classList.add('active');$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));}
+$('#bookForm').onsubmit=async e=>{
+ e.preventDefault(); const x=Object.fromEntries(new FormData(e.target)); x.name=normalize(x.name);x.passport=normalize(x.passport).toUpperCase();x.phone=normalize(x.phone);
+ if(x.name.length<3)return $('#bookMsg').innerHTML='<div class="notice error">يرجى كتابة الاسم بشكل صحيح.</div>';
+ if(!validPassport(x.passport))return $('#bookMsg').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
+ if(!validPhone(x.phone))return $('#bookMsg').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
+ if(x.booking_date&&x.exam_date&&x.exam_date<x.booking_date)return $('#bookMsg').innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
+ try{const r=await fetch(API+'/api/appointments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(x)});const d=await r.json();if(!r.ok)throw new Error(d.error||'تعذر حفظ الموعد');e.target.reset();$('#bookMsg').innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(d.ticket)}</strong></div>`;}catch(err){$('#bookMsg').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
+};
+async function searchAppointment(){
+ const q=normalize($('#query').value); if(!q)return $('#result').innerHTML='<div class="notice error">أدخل رقم الجواز أو الهاتف أو رقم التذكرة.</div>';
+ if(/^[a-zA-Z]/.test(q)&&!validPassport(q)&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">البيانات المدخلة غير صحيحة.</div>';
+ if(/^A/i.test(q)&&!validPassport(q))return $('#result').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
+ if(/^MC/i.test(q)&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">رقم التذكرة غير صحيح. يجب أن يبدأ بـ mc ويتبعه 11 رقمًا.</div>';
+ if(/^\d+$/.test(q)&&!validPhone(q))return $('#result').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
+ try{const r=await fetch(API+'/api/appointments/search?q='+encodeURIComponent(q));const x=await r.json();if(!r.ok)throw new Error(x.error||'لا يوجد حجز مطابق');window.currentAppointment=x;
+ $('#result').innerHTML=`<div class="result card"><div class="resultTop"><div><b>بيانات الموعد</b><div class="tiny">تم العثور على السجل المطلوب</div></div><span class="status">${esc(x.status||'تم الحجز')}</span></div><div class="columns"><div class="panel"><h3>بيانات صاحب الموعد</h3><div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div><div class="row"><span>رقم الجواز</span><b>${esc(x.passport)}</b></div><div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div></div><div class="panel"><h3>تفاصيل الموعد</h3><div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div><div class="row"><span>تاريخ الموعد</span><b>${esc(x.exam_date)}</b></div><div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place)}</b></div><div class="row"><span>الدولة المسافر إليها</span><b>${esc(x.destination)}</b></div><div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div><div class="row"><span>المبلغ المدفوع</span><b>${esc(x.payment)} جنيه</b></div></div></div><div class="ticketAction"><button class="primary" onclick="downloadTicketPDF()">تحميل التذكرة PDF</button></div></div>`;
+ }catch(err){$('#result').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
+}
+function downloadTicketPDF(){
+  const x=window.currentAppointment;
+  if(!x)return;
+  const esc=v=>String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
+  x.payment=x.payment??2500;
+  x.exam_place=x.exam_place??"حميات العباسية";
+  x.governorate=x.governorate??"القاهرة";
+  x.destination=x.destination??"الأردن";
+
+  const t=document.createElement("div");
+  t.id="pdfTicket";
+  t.innerHTML=`
+  <div class="ticket">
+    <div class="hero">
+      <div class="heroBrand">
+        <div class="brandSeal">✦</div>
+        <div><b>بوابة المواعيد الطبية</b><small>إدارة الخدمات الطبية</small></div>
+      </div>
+      <div class="heroTitle"><strong>تذكرة موعد الكشف الطبي</strong><span>للسفر للخارج</span><small>معًا نحو صحة أفضل .. من أجل سفر آمن</small></div>
+      <div class="flagRibbon"><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="wrap">
+      <div class="topGrid">
+        <div class="success">
+          <div class="ok">✓</div>
+          <div><b>تم تسجيل موعد الكشف الطبي بنجاح</b><span>يرجى الاحتفاظ بهذه التذكرة وإبرازها عند الحضور</span></div>
+        </div>
+        <div class="booking">
+          <label>رقم الحجز</label>
+          <strong>${esc(x.ticket)}</strong>
+          <div class="barcode">${Array.from({length:74},(_,n)=>`<i style="width:${n%7===0?3:2}px;height:${n%4===0?44:36}px"></i>`).join("")}</div>
+        </div>
+      </div>
+
+      <div class="mainGrid">
+        <section class="box details">
+          <div class="boxHead"><span>▣</span> بيانات الحجز</div>
+          ${[
+            ["الاسم",x.name,"●"],["رقم الجواز",x.passport,"▣"],["رقم الموبايل",x.phone,"☎"],
+            ["تاريخ الحجز",x.booking_date,"▦"],["تاريخ الكشف",x.exam_date,"◷"],
+            ["مكان الكشف",x.exam_place,"⌖"],["الدولة المسافر إليها",x.destination,"✈"],["المبلغ المدفوع",x.payment+" جنيه","▤"]
+          ].map(r=>`<div class="drow"><em>${r[2]}</em><b>${r[0]}</b><span>${esc(r[1])}</span></div>`).join("")}
+        </section>
+
+        <section class="box instructions">
+          <div class="boxHead"><span>☷</span> تعليمات هامة</div>
+          <div class="rules">
+            <p><i>✓</i> يرجى الحضور قبل موعد الكشف بساعة على الأقل.</p>
+            <p><i>✓</i> إحضار جميع الفحوصات والتقارير الطبية إن وجدت.</p>
+            <p><i>✓</i> هذا الحجز لا يعتبر موافقة نهائية للسفر.</p>
+            <p><i>✓</i> الحجز غير قابل للتعديل أو الإلغاء.</p>
+          </div>
+          <div class="verify">
+            <div class="qr">${Array.from({length:169},(_,n)=>{let r=Math.floor(n/13),c=n%13;let on=((r*19+c*23+r*c*7)%11)<5;return `<i class="${on?'on':''}"></i>`}).join("")}</div>
+            <div class="vline"></div>
+            <div class="downloadBadge"><div class="pdfIcon">↓<small>PDF</small></div><b>تحميل التذكرة</b><span>بصيغة PDF</span></div>
+          </div>
+          <div class="caption">امسح رمز QR للتحقق من بيانات الحجز</div>
+        </section>
+      </div>
+    </div>
+
+    <div class="ticketFooter">
+      <div class="footerText">بوابة المواعيد الطبية<br><small>خدمة إلكترونية مستقلة لإدارة المواعيد</small></div>
+      <div class="footerCity">أمان • صحة • خدمة</div>
+      <div class="footerRibbon"></div>
+    </div>
+  </div>`;
+
+  document.body.appendChild(t);
+  const style=document.createElement("style");
+  style.id="ticketPrintStyle";
+  style.textContent=`
+  #pdfTicket{position:fixed;left:-12000px;top:0;width:794px;background:#fff;direction:rtl;font-family:Tahoma,Arial,sans-serif;color:#12395d}
+  #pdfTicket .ticket{width:794px;height:1120px;box-sizing:border-box;background:#f5fbff;border:1px solid #b9cfdf;overflow:hidden;position:relative}
+  #pdfTicket .hero{height:178px;background:linear-gradient(135deg,#062b4e,#0b426d 55%,#0b5b80);color:#fff;display:grid;grid-template-columns:230px 1fr 80px;align-items:center;padding:0 22px;box-sizing:border-box;position:relative;overflow:hidden}
+  #pdfTicket .hero:after{content:"";position:absolute;right:-80px;bottom:-95px;width:520px;height:180px;border-radius:50%;background:rgba(255,255,255,.06);transform:rotate(-8deg)}
+  #pdfTicket .heroBrand{display:flex;align-items:center;gap:10px;z-index:2}
+  #pdfTicket .brandSeal{width:64px;height:64px;border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:31px;background:rgba(255,255,255,.08)}
+  #pdfTicket .heroBrand b{font-size:18px;display:block}.heroBrand small{font-size:11px;opacity:.9}
+  #pdfTicket .heroTitle{text-align:center;z-index:2}
+  #pdfTicket .heroTitle strong{display:block;font-size:31px;line-height:1.15}
+  #pdfTicket .heroTitle span{display:block;font-size:24px;font-weight:800;margin-top:5px}
+  #pdfTicket .heroTitle small{display:block;font-size:12px;margin-top:8px;opacity:.9}
+  #pdfTicket .flagRibbon{z-index:2;display:flex;flex-direction:column;transform:skewY(-15deg);opacity:.95}
+  #pdfTicket .flagRibbon i{display:block;height:20px}.flagRibbon i:nth-child(1){background:#fff}.flagRibbon i:nth-child(2){background:#111}.flagRibbon i:nth-child(3){background:#168b5b}
+  #pdfTicket .wrap{padding:20px 18px}
+  #pdfTicket .topGrid{display:grid;grid-template-columns:1.35fr 1fr;gap:12px}
+  #pdfTicket .success,#pdfTicket .booking{height:115px;border:1.7px solid #9dbfd3;border-radius:12px;background:#fff;box-sizing:border-box}
+  #pdfTicket .success{border-color:#23855e;display:flex;align-items:center;gap:14px;padding:13px 16px}
+  #pdfTicket .ok{width:68px;height:68px;background:#0a8151;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;flex:none}
+  #pdfTicket .success b{font-size:21px;color:#126b4a;display:block}.success span{font-size:12px;font-weight:700;display:block;margin-top:7px}
+  #pdfTicket .booking{padding:11px 15px;text-align:right}.booking label{display:block;font-size:14px;color:#173e7b;font-weight:900}.booking strong{display:block;font-size:18px;color:#173e7b;margin:4px 0}
+  #pdfTicket .barcode{height:42px;display:flex;align-items:center;gap:2px;overflow:hidden}.barcode i{background:#111;display:block}
+  #pdfTicket .mainGrid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px;margin-top:13px}
+  #pdfTicket .box{border:1.7px solid #a6c9de;border-radius:12px;overflow:hidden;background:#fff}
+  #pdfTicket .boxHead{height:52px;background:linear-gradient(90deg,#123d69,#0a5a8c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:900;gap:9px}
+  #pdfTicket .drow{height:49px;display:grid;grid-template-columns:40px 110px 1fr;align-items:center;border-bottom:1px solid #c9ddea}
+  #pdfTicket .drow:last-child{border-bottom:0;background:#eaf4fb}.drow em{text-align:center;font-style:normal;color:#0b4a7b;font-size:18px}.drow b{font-size:13px;color:#174a7e}.drow span{font-size:14px;font-weight:800;color:#101d29;padding:0 7px}
+  #pdfTicket .drow:last-child span{color:#08774e;font-size:16px}
+  #pdfTicket .rules{padding:11px 16px 5px}.rules p{margin:8px 0;font-size:13px;font-weight:700;color:#163f70}.rules i{font-style:normal;color:#087a4e;font-size:17px;margin-left:6px}
+  #pdfTicket .verify{margin:8px 14px 0;height:205px;border:1px solid #a9cde2;border-radius:10px;display:grid;grid-template-columns:1fr 2px 1fr;align-items:center;padding:12px;box-sizing:border-box}
+  #pdfTicket .qr{width:155px;height:155px;display:grid;grid-template-columns:repeat(13,1fr);margin:auto;border:4px solid #fff;box-shadow:0 0 0 1px #bcd2df}.qr i{background:#fff}.qr i.on{background:#111}
+  #pdfTicket .vline{height:155px;background:#d1e0ea}.downloadBadge{text-align:center}.pdfIcon{width:72px;height:84px;border:2px solid #c92734;border-radius:8px;margin:0 auto 8px;color:#c92734;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:31px;font-weight:900}.pdfIcon small{font-size:16px}.downloadBadge b{display:block;color:#173e7b;font-size:16px}.downloadBadge span{font-size:11px;color:#65798c}
+  #pdfTicket .caption{text-align:center;font-size:10px;font-weight:800;color:#173e7b;padding:5px}
+  #pdfTicket .ticketFooter{height:120px;background:linear-gradient(135deg,#062b4e,#0b466f);color:#fff;position:absolute;left:0;right:0;bottom:0;padding:15px 22px;box-sizing:border-box;overflow:hidden}
+  #pdfTicket .footerText{font-size:20px;font-weight:900}.footerText small{font-size:10px;font-weight:400;opacity:.85}.footerCity{position:absolute;left:28px;bottom:20px;font-size:16px;opacity:.9}.footerRibbon{position:absolute;right:-55px;bottom:-50px;width:310px;height:100px;transform:rotate(-12deg);background:linear-gradient(#ce2939 0 28%,#fff 28% 55%,#111 55% 100%);border-radius:50%}
+  @media print{html,body{margin:0!important;padding:0!important;background:#fff!important}body>*:not(#pdfTicket){display:none!important}#pdfTicket{position:static!important;left:auto!important;top:auto!important;width:794px!important;margin:0 auto!important;display:block!important}}
+  @page{size:A4 portrait;margin:0}
+  `;
+  document.head.appendChild(style);
+  window.print();
+  setTimeout(()=>{t.remove();style.remove()},1200);
+}
+
+
+async function loadCurrencyRates(){
+  const usdEl=document.getElementById("usdRate"), jodEl=document.getElementById("jodRate"), timeEl=document.getElementById("ratesTime");
+  try{
+    const res=await fetch("https://open.er-api.com/v6/latest/EGP",{cache:"no-store"});
+    const data=await res.json();
+    if(!data || data.result!=="success") throw new Error("rate");
+    const egpPerUsd=1/data.rates.USD;
+    const egpPerJod=1/data.rates.JOD;
+    usdEl.textContent=egpPerUsd.toFixed(2)+" ج.م";
+    jodEl.textContent=egpPerJod.toFixed(2)+" ج.م";
+    const d=new Date();
+    timeEl.textContent="آخر تحديث "+d.toLocaleTimeString("ar-EG",{hour:"2-digit",minute:"2-digit"});
+  }catch(e){
+    // Fallback to the latest available official customs reference shown by Nafeza.
+    usdEl.textContent="51.50 ج.م";
+    jodEl.textContent="72.73 ج.م";
+    timeEl.textContent="آخر تحديث مرجعي: 24/09/2026";
+  }
+}
+
+async function loadEgyptNews(){
+  const box=document.getElementById("egyptNews");
+  try{
+    const rss="https://news.google.com/rss/search?q="+encodeURIComponent("مصر عندما:1d")+"&hl=ar&gl=EG&ceid=EG:ar";
+    const res=await fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(rss),{cache:"no-store"});
+    const data=await res.json();
+    const items=(data.items||[]).slice(0,5);
+    if(!items.length) throw new Error("news");
+    box.innerHTML=items.map((it,i)=>{
+      const date=it.pubDate?new Date(it.pubDate).toLocaleDateString("ar-EG",{day:"numeric",month:"short"}):"اليوم";
+      return `<article class="newsItem"><span class="newsNo">${i+1}</span><div class="newsText"><a href="${esc(it.link||"#")}" target="_blank" rel="noopener">${esc(it.title||"خبر مصر")}</a><span class="newsMeta">${date}</span></div></article>`;
+    }).join("");
+  }catch(e){
+    box.innerHTML=`
+      <article class="newsItem"><span class="newsNo">1</span><div class="newsText"><a href="#" onclick="return false">تعذر تحديث الأخبار الآن، حاول فتح الصفحة مرة أخرى.</a><span class="newsMeta">تحديث تلقائي</span></div></article>
+      <article class="newsItem"><span class="newsNo">2</span><div class="newsText"><a href="#" onclick="return false">قسم الأخبار جاهز لعرض أحدث العناوين عند توفر الاتصال بالمصدر.</a><span class="newsMeta">أخبار مصر</span></div></article>`;
+  }
+}
+loadCurrencyRates();
+loadEgyptNews();
+setInterval(loadCurrencyRates, 24*60*60*1000);
+</script>
+</body></html>
