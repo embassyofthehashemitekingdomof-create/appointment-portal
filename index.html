@@ -1,246 +1,14 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</title>
-<style>
-:root{
- --navy:#0b3b63;--navy2:#083154;--blue:#1f65a4;--blue2:#2b76b8;
- --bg:#eef4f8;--panel:#fff;--line:#cbdbe8;--text:#183b61;--muted:#647b91;
- --red:#b3202d;--green:#148257;--gold:#d7b052
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:linear-gradient(#eef4f8,#f8fafc);color:var(--text);direction:rtl}
-.top{background:linear-gradient(120deg,#0a3153,#124d7b 55%,#0d4169);color:#fff;min-height:130px;position:relative;overflow:hidden}
-.top:before{content:"";position:absolute;inset:0;background:
- radial-gradient(circle at 70% 20%,rgba(255,255,255,.07),transparent 28%),
- linear-gradient(155deg,transparent 0 55%,rgba(255,255,255,.035) 55% 56%,transparent 56% 100%);
- pointer-events:none}
-.topin{max-width:1450px;margin:auto;height:130px;padding:16px 42px;display:flex;align-items:center;justify-content:space-between;gap:30px;position:relative;z-index:1}
-.brand{display:flex;align-items:center;gap:18px;min-width:0}
-.brandLogo{width:94px;height:94px;flex:none;display:grid;place-items:center}
-.brandLogo svg{width:92px;height:92px}
-.brandText{border-right:1px solid rgba(255,255,255,.75);padding-right:22px}
-.brandText b{font-size:27px;line-height:1.25;display:block;color:#fff}
-.brandText span{font-size:17px;font-weight:700;display:block;margin-top:6px;color:#f1f6fa}
-.topTitle{text-align:right;display:flex;align-items:center;gap:18px}
-.topTitle .titleIcon{width:70px;height:70px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.25);border-radius:15px;background:rgba(255,255,255,.08);font-size:42px}
-.topTitle b{display:block;font-size:31px;line-height:1.25}
-.topTitle span{display:block;font-size:20px;font-weight:700;margin-top:4px}
-.nav{background:#fff;border-bottom:1px solid #d7e1e9;box-shadow:0 2px 9px rgba(0,40,80,.06)}
-.navin{max-width:1450px;margin:auto;display:flex;align-items:stretch;justify-content:center;overflow:auto}
-.nav button{min-height:76px;padding:0 30px;border:0;border-left:1px solid #d8e0e7;background:#fff;color:#4d6680;font:700 18px "Segoe UI",Tahoma,Arial;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:10px}
-.nav button:first-child{border-right:1px solid #d8e0e7}
-.nav button.active{color:#125b99;background:#f9fbfd;box-shadow:inset 0 -3px 0 #1769aa}
-.nav button:hover{color:#125b99;background:#f7fafc}
-.nav .ico{font-size:23px;line-height:1}
-main{max-width:1450px;margin:34px auto;padding:0 42px}
-.view{display:none}.view.active{display:block}
-.pageBox{background:#fff;border:1px solid #cbdbe8;border-radius:6px;box-shadow:0 4px 16px rgba(30,80,120,.06);overflow:hidden}
-.pageTitle{background:linear-gradient(180deg,#eef7fc,#e8f3fa);border-bottom:1px solid #cbdbe8;padding:18px 28px;text-align:right}
-.pageTitle h2{margin:0;font-size:25px;color:#123e6c}
-.pageTitle p{margin:6px 0 0;color:#657b90;font-size:14px}
-.searchBox{padding:20px 20px 18px}
-.searchGrid{display:grid;grid-template-columns:1fr 1fr 315px;gap:16px;align-items:end}
-.field label{display:block;font-size:17px;font-weight:800;color:#50677e;margin-bottom:8px}
-.field input,.field select{width:100%;height:52px;border:1px solid #b9cad8;border-radius:5px;background:#fff;color:#294766;padding:0 17px;font:600 17px "Segoe UI",Tahoma,Arial;outline:none}
-.field input:focus,.field select:focus{border-color:#236dad;box-shadow:0 0 0 2px rgba(35,109,173,.12)}
-.searchSelect{position:relative}.searchBtn{height:52px;border:0;border-radius:6px;background:linear-gradient(#2e73b5,#1f64a5);color:#fff;font:800 18px "Segoe UI";cursor:pointer;box-shadow:0 3px 6px rgba(20,75,125,.15)}
-.searchBtn .ico{font-size:25px;vertical-align:-2px;margin-left:7px}
-.notice{padding:15px 18px;border-radius:6px;margin-top:16px;font-size:16px;font-weight:700}
-.notice.success{background:#edf9f4;border:1px solid #b7dece;color:#18734f}
-.notice.error{background:#fff1f1;border:1px solid #e6bcbc;color:#a32929}
-.result{margin:0 20px 20px;padding:18px;border:1px solid #cbdbe8;background:#fff}
-.resultTop{display:flex;align-items:center;justify-content:space-between;background:#eff8fd;border:1px solid #d3e3ed;border-radius:5px;padding:14px 18px}
-.resultTop>b,.resultTop>div>b{font-size:22px;color:#153e69}
-.resultTop .tiny{font-size:13px;color:#6d8194;margin-top:3px}
-.status{background:#1b8b61;color:#fff;border-radius:50%;width:43px;height:43px;display:grid;place-items:center;font-size:0}
-.status:after{content:"✓";font-size:27px;font-weight:900}
-.columns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.panel{border:1px solid #d4e1ea;border-radius:5px;overflow:hidden;background:#fff}
-.panel h3{margin:0;background:#eaf4fa;padding:13px 18px;color:#153f6c;font-size:19px}
-.row{min-height:54px;display:grid;grid-template-columns:150px 1fr;align-items:center;border-top:1px solid #e5edf3;padding:0 18px;font-size:16px}
-.row span{color:#627a91;font-weight:700}.row b{color:#173b61;text-align:right}
-.infoNote{margin-top:14px;background:#eef8fd;border:1px solid #c9dfea;border-radius:6px;padding:13px 16px;color:#244b70;font-weight:700}
-.ticketAction{text-align:center;margin-top:16px}.ticketAction .primary{min-width:230px}
-.primary{background:#2167a7;color:#fff;border:0;border-radius:6px;padding:13px 25px;font:800 17px "Segoe UI";cursor:pointer}
-.bookWrap{padding:22px 24px}
-.form{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.full{grid-column:1/-1}
-.form .field label{font-size:16px}.form .field input,.form .field select{height:52px}
-.form .full{text-align:center;padding-top:6px}.form .primary{background:linear-gradient(#d62e3c,#b8202d);min-width:220px}
-.passwordHint{font-size:12px;color:#8091a1;margin-top:5px}
-.homeCard{padding:35px;display:grid;grid-template-columns:1.3fr .7fr;gap:25px}
-.homeCard h1{font-size:38px;margin:0 0 12px;color:#123d68}
-.homeCard p{font-size:18px;line-height:2;color:#60778d}
-.homeActions{display:flex;gap:12px;margin-top:25px}.homeActions .primary{background:#2167a7}.homeActions .secondary{background:#fff;border:1px solid #b8cddd;color:#1d5e98}
-.homeVisual{display:grid;place-items:center;background:linear-gradient(145deg,#edf6fb,#fff);border:1px solid #d7e5ee;border-radius:10px;min-height:260px}
-.homeVisual .bigIcon{font-size:95px;color:#236da9}
-.footer{background:#0b3b63;color:#fff;text-align:center;padding:18px;margin-top:70px;font-size:13px;border-top:4px solid #092e4e}
-.guide{padding:25px;line-height:2;color:#38546d}
-@media(max-width:1000px){
- .topin{height:auto;min-height:130px;padding:15px 22px}.topTitle{display:none}.brandText b{font-size:22px}.brandText span{font-size:14px}
- .nav button{padding:0 20px;font-size:16px}.nav button:nth-child(n+4){display:none}
- main{padding:0 20px}.searchGrid{grid-template-columns:1fr 1fr}.searchGrid .searchBtnWrap{grid-column:1/-1}.searchGrid .searchBtn{width:100%}
- .homeCard{grid-template-columns:1fr}.homeVisual{display:none}
-}
-@media(max-width:650px){
- .topin{padding:12px 15px}.brandLogo{width:58px;height:58px}.brandLogo svg{width:58px;height:58px}.brandText{padding-right:12px}.brandText b{font-size:17px}.brandText span{font-size:11px}
- .nav button{min-height:60px;padding:0 13px;font-size:14px}.nav .ico{font-size:18px}
- main{margin:20px auto;padding:0 10px}.pageTitle{padding:14px 16px}.pageTitle h2{font-size:20px}
- .searchBox{padding:14px}.searchGrid{grid-template-columns:1fr}.searchGrid .searchBtnWrap{grid-column:auto}
- .columns{grid-template-columns:1fr}.row{grid-template-columns:125px 1fr;font-size:14px}.panel h3{font-size:17px}
- .result{margin:0 14px 14px;padding:12px}.resultTop>b,.resultTop>div>b{font-size:18px}
- .form{grid-template-columns:1fr}.full{grid-column:auto}.bookWrap{padding:16px}
-}
-</style>
-</head>
-
-<body>
-<header class="top">
-  <div class="topin">
-    <div class="brand">
-      <div class="brandLogo" aria-label="هوية مصرية">
-        <svg viewBox="0 0 100 100" role="img">
-          <circle cx="50" cy="50" r="44" fill="#fff" opacity=".96"/>
-          <rect x="22" y="25" width="56" height="16" rx="2" fill="#ce1126"/>
-          <rect x="22" y="41" width="56" height="16" rx="2" fill="#fff"/>
-          <rect x="22" y="57" width="56" height="16" rx="2" fill="#111"/>
-          <path d="M50 29c-7 6-11 12-11 20 0 12 6 18 11 23 5-5 11-11 11-23 0-8-4-14-11-20Z" fill="#d6b45d" opacity=".95"/>
-          <path d="M50 36l3 8 9 1-7 5 2 9-7-5-7 5 2-9-7-5 9-1 3-8Z" fill="#fff" opacity=".8"/>
-        </svg>
-      </div>
-      <div class="brandText">
-        <b>نظام حجز مواعيد الكشف الطبي</b>
-        <span>لراغبي السفر للخارج</span>
-      </div>
-    </div>
-    <div class="topTitle">
-      <div>
-        <b>نظام حجز مواعيد الكشف الطبي</b>
-        <span>للسفر للخارج</span>
-      </div>
-      <div class="titleIcon">▣</div>
-    </div>
-  </div>
-</header>
-
-<nav class="nav">
- <div class="navin">
-  <button class="active" data-view="home"><span class="ico">⌂</span>الرئيسية</button>
-  <button data-view="book"><span class="ico">▣</span>حجز موعد جديد</button>
-  <button data-view="search"><span class="ico">⌕</span>الاستعلام عن موعد</button>
-  <button data-view="search"><span class="ico">▤</span>الاستعلام عن نتيجة الكشف</button>
-  <button data-view="guide"><span class="ico">▣</span>دليل المستخدم</button>
-  <button data-view="home"><span class="ico">↪</span>خروج</button>
- </div>
-</nav>
-
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>نظام حجز مواعيد الكشف الطبي للسفر للخارج</title><style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:"Tahoma","Arial",sans-serif;background:#f3f5f7;color:#333;direction:rtl}.top{background:#075b91;color:#fff}.topin{max-width:1180px;margin:auto;min-height:112px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:15px}.logo{width:82px;height:82px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;border:4px solid #e8eef3}.logo svg{width:68px;height:68px}.brand h1{margin:0;font-size:25px;font-weight:700;line-height:1.45}.brand p{margin:4px 0 0;font-size:15px;opacity:.92}.headerSide{text-align:left;font-size:15px;line-height:1.8;opacity:.95}.nav{background:#fff;border-bottom:1px solid #d6dde3;box-shadow:0 1px 4px rgba(0,0,0,.08)}.navin{max-width:1180px;margin:auto;display:flex;align-items:stretch}.nav button{background:#fff;border:0;border-left:1px solid #e1e5e8;padding:20px 25px;color:#555;font:700 16px Tahoma,Arial;cursor:pointer;white-space:nowrap}.nav button:first-child{border-right:1px solid #e1e5e8}.nav button:hover,.nav button.active{background:#f0f6fb;color:#075b91;box-shadow:inset 0 -3px #075b91}main{max-width:1180px;margin:28px auto;padding:0 18px}.view{display:none}.view.active{display:block}.pageTitle{background:#fff;border:1px solid #d7dde2;border-bottom:3px solid #075b91;padding:20px 24px}.pageTitle h2{margin:0;color:#075b91;font-size:24px}.pageTitle p{margin:7px 0 0;color:#777;font-size:14px}.card{background:#fff;border:1px solid #d7dde2;box-shadow:0 1px 3px rgba(0,0,0,.05)}.searchCard{margin-top:18px;padding:22px}.searchGrid{display:grid;grid-template-columns:1fr 1fr 190px;gap:16px;align-items:end}.field label{display:block;font-weight:700;color:#555;margin-bottom:8px;font-size:15px}.field input,.field select{width:100%;height:48px;border:1px solid #c6cdd3;border-radius:3px;padding:0 12px;font:15px Tahoma,Arial;color:#333;background:#fff}.field input:focus,.field select:focus{outline:none;border-color:#0b70ae;box-shadow:0 0 0 2px rgba(11,112,174,.1)}.btn{height:48px;border:0;border-radius:3px;padding:0 24px;font:700 16px Tahoma,Arial;cursor:pointer}.primary{background:#075b91;color:#fff}.primary:hover{background:#064e7d}.notice{margin-top:16px;padding:14px 18px;border-radius:3px;font-size:15px}.notice.success{background:#eaf7ef;border:1px solid #b7dec5;color:#227744}.notice.error{background:#fff0f0;border:1px solid #e1b5b5;color:#a32626}.result{margin-top:18px;padding:18px}.resultHead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d8e0e6;padding-bottom:14px}.resultHead h3{margin:0;color:#075b91;font-size:20px}.status{background:#28a567;color:#fff;border-radius:3px;padding:8px 15px;font-size:14px;font-weight:700}.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel{border:1px solid #d6dde3}.panel h3{margin:0;background:#edf4f8;color:#075b91;padding:12px 15px;font-size:17px;border-bottom:1px solid #d6dde3}.row{display:grid;grid-template-columns:170px 1fr;min-height:48px;align-items:center;border-bottom:1px solid #e7eaed;padding:0 14px}.row:last-child{border-bottom:0}.row span{color:#777}.row b{color:#333}.note{margin-top:18px;background:#fffdf0;border:1px solid #eadc9b;padding:14px 17px;color:#6b5c18;font-size:14px}.ticketAction{margin-top:16px;text-align:left}.hero{padding:32px;background:#fff;border:1px solid #d7dde2}.hero h2{margin:0;color:#075b91;font-size:27px}.hero p{color:#666;line-height:1.9}.actions{display:flex;gap:12px;margin-top:20px}.form{margin-top:18px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}.form .full{grid-column:1/-1}.sectionTitle{margin-bottom:16px}.sectionTitle h2{margin:0;color:#075b91}.sectionTitle p{margin:6px 0;color:#777}.footer{margin-top:45px;background:#075b91;color:#fff;text-align:center;padding:25px 15px;font-size:13px;line-height:2}.footer small{opacity:.85}@media(max-width:800px){.topin{min-height:auto;padding:12px 15px}.headerSide{display:none}.brand h1{font-size:18px}.brand p{font-size:12px}.logo{width:60px;height:60px}.logo svg{width:48px;height:48px}.navin{overflow-x:auto}.nav button{padding:16px 14px;font-size:13px}.searchGrid,.columns,.form{grid-template-columns:1fr}.row{grid-template-columns:125px 1fr}.ticketAction{text-align:center}.actions{flex-direction:column}}
+</style></head><body><header class="top"><div class="topin"><div class="brand"><div class="logo"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#075b91"/><path d="M25 30h50v40H25z" fill="#fff"/><path d="M31 36h38v28H31z" fill="#075b91"/><path d="M50 18l6 10h-12z" fill="#d6a83c"/><path d="M36 42h28v4H36zm0 8h28v4H36zm0 8h28v4H36z" fill="#fff"/></svg></div><div><h1>نظام حجز مواعيد الكشف الطبي للسفر للخارج</h1><p>بوابة إلكترونية لحجز المواعيد والاستعلام عنها</p></div></div><div class="headerSide">خدمات إلكترونية<br>لراغبي السفر للخارج</div></div></header>
+<nav class="nav"><div class="navin"><button data-view="home">الرئيسية</button><button data-view="book">حجز موعد جديد</button><button class="active" data-view="search">الاستعلام عن موعد</button><button data-view="resultInfo">الاستعلام عن نتيجة الكشف</button><button data-view="guide">دليل المستخدم</button><button onclick="showView('home')">تسجيل خروج</button></div></nav>
 <main>
-<section id="home" class="view active">
- <div class="pageBox">
-  <div class="homeCard">
-   <div>
-    <div class="pageTitle" style="border:0;padding:0;background:transparent"><h2>الخدمات الإلكترونية للمواعيد الطبية</h2></div>
-    <h1>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</h1>
-    <p>احجز موعد الكشف الطبي واستعلم عن بيانات الحجز بسهولة من خلال بوابة إلكترونية مبسطة ومتوافقة مع الهواتف.</p>
-    <div class="homeActions">
-      <button class="primary" onclick="showView('book')">حجز موعد جديد</button>
-      <button class="secondary" onclick="showView('search')">الاستعلام عن موعد</button>
-    </div>
-   </div>
-   <div class="homeVisual"><div class="bigIcon">▣</div></div>
-  </div>
- </div>
-</section>
-
-<section id="book" class="view">
- <div class="pageBox">
-  <div class="pageTitle"><h2>حجز موعد الكشف الطبي</h2><p>إدخال بيانات صاحب الموعد</p></div>
-  <div class="bookWrap">
-   <form id="bookForm" class="form">
-    <div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="اكتب الاسم الكامل"></div>
-    <div class="field"><label>رقم الجواز</label><input name="passport" required placeholder="مثال: A12345678"></div>
-    <div class="field"><label>رقم الهاتف</label><input name="phone" required inputmode="numeric" placeholder="01xxxxxxxxx"></div>
-    <div class="field"><label>كلمة المرور</label><input name="password" type="password" required autocomplete="off" placeholder="أدخل كلمة المرور"><div class="passwordHint">يلزم إدخال كلمة المرور لإتمام الحجز</div></div>
-    <div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div>
-    <div class="field"><label>تاريخ الموعد</label><input name="exam_date" type="date" required></div>
-    <div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div>
-    <div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option><option>ملغى</option><option>مكتمل</option></select></div>
-    <div class="full"><button class="primary">حفظ الموعد</button></div>
-   </form>
-   <div id="bookMsg"></div>
-  </div>
- </div>
-</section>
-
-<section id="search" class="view">
- <div class="pageBox">
-  <div class="pageTitle"><h2>الاستعلام عن موعد الكشف الطبي</h2></div>
-  <div class="searchBox">
-   <div class="searchGrid">
-    <div class="field"><label>رقم الجواز</label><input id="query" placeholder="A12345678"></div>
-    <div class="field searchSelect"><label>نوع البحث</label><select><option>برقم الجواز</option><option>برقم الهاتف</option><option>برقم التذكرة</option></select></div>
-    <div class="searchBtnWrap"><button class="searchBtn" onclick="searchAppointment()"><span class="ico">⌕</span>بحث</button></div>
-   </div>
-  </div>
-  <div id="result"></div>
- </div>
-</section>
-
-<section id="guide" class="view">
- <div class="pageBox">
-  <div class="pageTitle"><h2>دليل المستخدم</h2></div>
-  <div class="guide">
-   <b>لحجز موعد:</b> افتح «حجز موعد جديد»، أدخل البيانات المطلوبة وكلمة المرور، ثم اضغط «حفظ الموعد».<br>
-   <b>للاستعلام:</b> افتح «الاستعلام عن موعد» وأدخل رقم الجواز أو الهاتف أو رقم التذكرة.
-  </div>
- </div>
-</section>
-</main>
-
-<footer class="footer">جميع الحقوق محفوظة — نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</footer>
-
-<script>
-function paidAmount(a){ return (a && (a.payment ?? a.paidAmount)) || 2500; }
-
-function normalize(v){
-  return String(v ?? '').trim();
-}
-function validPassport(v){
-  return /^A\d{8}$/.test(normalize(v).toUpperCase());
-}
-function validPhone(v){
-  return /^01\d{9}$/.test(normalize(v));
-}
-function validTicket(v){
-  return /^mc\d{11}$/i.test(normalize(v));
-}
-function generateTicket(list){
-  const used=new Set(list.map(a=>String(a.ticket||'').toLowerCase()));
-  let ticket="";
-  do{
-    let digits="";
-    for(let i=0;i<11;i++) digits += Math.floor(Math.random()*10);
-    ticket="mc"+digits;
-  }while(used.has(ticket));
-  return ticket;
-}
-function duplicateRegistration(list, data){
-  const p=normalize(data.passport).toUpperCase();
-  const ph=normalize(data.phone);
-  return list.some(a =>
-    (a.passport && normalize(a.passport).toUpperCase()===p) ||
-    (a.phone && normalize(a.phone)===ph)
-  );
-}
-function esc(v){
-  return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
-}
-</script>
-
+<section id="home" class="view"><div class="hero"><h2>نظام حجز مواعيد الكشف الطبي للسفر للخارج</h2><p>يمكنك من خلال هذه البوابة حجز موعد جديد أو الاستعلام عن بيانات موعد سبق حجزه.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn primary" onclick="showView('search')">الاستعلام عن موعد</button></div></div></section>
+<section id="book" class="view"><div class="sectionTitle"><h2>حجز موعد جديد</h2><p>برجاء إدخال البيانات المطلوبة بدقة.</p></div><form id="bookForm" class="card form"><div class="field"><label>الاسم بالكامل</label><input name="name" required></div><div class="field"><label>نوع الرقم</label><select name="id_type" id="idType"><option value="passport">رقم جواز السفر</option><option value="national_id">الرقم القومي</option></select></div><div class="field"><label id="idNumberLabel">رقم جواز السفر</label><input name="id_number" id="idNumber" required autocomplete="off"></div><div class="field"><label>رقم الهاتف</label><input name="phone" required></div><div class="field"><label>كلمة المرور</label><input name="password" type="password" required autocomplete="off"></div><div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div><div class="field"><label>تاريخ الكشف</label><input name="exam_date" type="date" required></div><div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div><div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option><option>ملغى</option><option>مكتمل</option></select></div><div class="full"><button class="btn primary">حفظ الموعد</button></div></form><div id="bookMsg"></div></section>
+<section id="search" class="view active"><div class="pageTitle"><h2>الاستعلام عن موعد الكشف الطبي</h2><p>يمكن الاستعلام عن الموعد باستخدام رقم الجواز أو الرقم القومي أو رقم الهاتف أو رقم التذكرة.</p></div><div class="card searchCard"><div class="searchGrid"><div class="field"><label>طريقة البحث</label><select id="searchType"><option value="passport">رقم جواز السفر</option><option value="national_id">الرقم القومي</option><option value="phone">رقم الهاتف</option><option value="ticket">رقم التذكرة</option></select></div><div class="field"><label>بيانات البحث</label><input id="query" placeholder="أدخل بيانات البحث"></div><button class="btn primary" onclick="searchAppointment()">بحث</button></div></div><div id="result"></div></section>
+<section id="resultInfo" class="view"><div class="pageTitle"><h2>الاستعلام عن نتيجة الكشف</h2><p>هذه الخدمة غير مفعلة حاليًا.</p></div></section>
+<section id="guide" class="view"><div class="pageTitle"><h2>دليل المستخدم</h2><p>اختر حجز موعد جديد لإضافة حجز، أو الاستعلام عن موعد لعرض بيانات حجز موجود.</p></div></section>
+</main><footer class="footer">نظام حجز مواعيد الكشف الطبي للسفر للخارج<br><small>بوابة إلكترونية مستقلة لإدارة المواعيد</small></footer>
 <script>
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const API='';
@@ -265,40 +33,53 @@ async function supabaseRpc(functionName, body){
 }
 function normalize(v){return String(v??'').trim().replace(/\s+/g,' ')}
 function validPassport(v){return /^A\d{8}$/i.test(normalize(v));}
+function validNationalId(v){return /^\d{14}$/.test(normalize(v));}
 function validPhone(v){return /^01\d{9}$/.test(normalize(v));}
 function validTicket(v){return /^mc\d{11}$/i.test(normalize(v));}
 function esc(v){return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;',"'":"&#39;"}[s]));}
 $$('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
 function showView(id){$$('.view').forEach(v=>v.classList.remove('active'));$('#'+id).classList.add('active');$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));}
+$('#idType').onchange=()=>{
+ const isNational=$('#idType').value==='national_id';
+ $('#idNumberLabel').textContent=isNational?'الرقم القومي':'رقم جواز السفر';
+ $('#idNumber').placeholder=isNational?'أدخل الرقم القومي المكون من 14 رقمًا':'أدخل رقم الجواز مثل A12345678';
+ $('#idNumber').value='';
+};
 $('#bookForm').onsubmit=async e=>{
- e.preventDefault(); const x=Object.fromEntries(new FormData(e.target)); x.name=normalize(x.name);x.passport=normalize(x.passport).toUpperCase();x.phone=normalize(x.phone);
+ e.preventDefault(); const x=Object.fromEntries(new FormData(e.target));
+ x.name=normalize(x.name);x.id_number=normalize(x.id_number);x.phone=normalize(x.phone);
+ if(x.id_type==='passport')x.id_number=x.id_number.toUpperCase();
  if(x.name.length<3)return $('#bookMsg').innerHTML='<div class="notice error">يرجى كتابة الاسم بشكل صحيح.</div>';
- if(!validPassport(x.passport))return $('#bookMsg').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
+ if(x.id_type==='passport'&&!validPassport(x.id_number))return $('#bookMsg').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
+ if(x.id_type==='national_id'&&!validNationalId(x.id_number))return $('#bookMsg').innerHTML='<div class="notice error">الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.</div>';
  if(!validPhone(x.phone))return $('#bookMsg').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
  if(x.booking_date&&x.exam_date&&x.exam_date<x.booking_date)return $('#bookMsg').innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
  try{
     const d=await supabaseRpc('create_appointment',{
-      p_name:x.name,p_passport:x.passport,p_phone:x.phone,
+      p_name:x.name,p_id_type:x.id_type,p_id_number:x.id_number,p_phone:x.phone,
       p_booking_date:x.booking_date,p_exam_date:x.exam_date,
       p_destination:x.destination,p_status:x.status,p_password:x.password
     });
     const row=Array.isArray(d)?d[0]:d;
-    e.target.reset();
+    e.target.reset(); $('#idType').dispatchEvent(new Event('change'));
     $('#bookMsg').innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(row.ticket)}</strong></div>`;
   }catch(err){$('#bookMsg').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
 };
 async function searchAppointment(){
- const q=normalize($('#query').value); if(!q)return $('#result').innerHTML='<div class="notice error">أدخل رقم الجواز أو الهاتف أو رقم التذكرة.</div>';
- if(/^[a-zA-Z]/.test(q)&&!validPassport(q)&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">البيانات المدخلة غير صحيحة.</div>';
- if(/^A/i.test(q)&&!validPassport(q))return $('#result').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
- if(/^MC/i.test(q)&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">رقم التذكرة غير صحيح. يجب أن يبدأ بـ mc ويتبعه 11 رقمًا.</div>';
- if(/^\d+$/.test(q)&&!validPhone(q))return $('#result').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
+ const q=normalize($('#query').value); const type=$('#searchType').value;
+ if(!q)return $('#result').innerHTML='<div class="notice error">أدخل بيانات البحث.</div>';
+ if(type==='passport'&&!validPassport(q))return $('#result').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
+ if(type==='national_id'&&!validNationalId(q))return $('#result').innerHTML='<div class="notice error">الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.</div>';
+ if(type==='phone'&&!validPhone(q))return $('#result').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
+ if(type==='ticket'&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">رقم التذكرة غير صحيح. يجب أن يبدأ بـ mc ويتبعه 11 رقمًا.</div>';
  try{
  const d=await supabaseRpc('search_appointment',{p_query:q});
  const x=Array.isArray(d)?d[0]:d;
  if(!x)throw new Error('لا يوجد حجز مطابق');
  window.currentAppointment=x;
- $('#result').innerHTML=`<div class="result card"><div class="resultTop"><div><b>بيانات الموعد</b><div class="tiny">تم العثور على السجل المطلوب</div></div><span class="status">${esc(x.status||'تم الحجز')}</span></div><div class="columns"><div class="panel"><h3>بيانات صاحب الموعد</h3><div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div><div class="row"><span>رقم الجواز</span><b>${esc(x.passport)}</b></div><div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div></div><div class="panel"><h3>تفاصيل الموعد</h3><div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div><div class="row"><span>تاريخ الموعد</span><b>${esc(x.exam_date)}</b></div><div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place)}</b></div><div class="row"><span>الدولة المسافر إليها</span><b>${esc(x.destination)}</b></div><div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div><div class="row"><span>المبلغ المدفوع</span><b>${esc(x.payment)} جنيه</b></div></div></div><div class="ticketAction"><button class="primary" onclick="downloadTicketPDF()">تحميل التذكرة PDF</button></div></div>`;
+ const identityLabel=x.passport?'رقم الجواز':'الرقم القومي';
+ const identityValue=x.passport||x.national_id||'-';
+ $('#result').innerHTML=`<div class="result card"><div class="resultTop"><div><b>بيانات الموعد</b><div class="tiny">تم العثور على السجل المطلوب</div></div><span class="status">${esc(x.status||'تم الحجز')}</span></div><div class="columns"><div class="panel"><h3>بيانات صاحب الموعد</h3><div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div><div class="row"><span>${identityLabel}</span><b>${esc(identityValue)}</b></div><div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div></div><div class="panel"><h3>تفاصيل الموعد</h3><div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div><div class="row"><span>تاريخ الموعد</span><b>${esc(x.exam_date)}</b></div><div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place)}</b></div><div class="row"><span>الدولة المسافر إليها</span><b>${esc(x.destination)}</b></div><div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div><div class="row"><span>المبلغ المدفوع</span><b>${esc(x.payment)} جنيه</b></div></div></div><div class="ticketAction"><button class="primary" onclick="downloadTicketPDF()">تحميل التذكرة PDF</button></div></div>`;
  }catch(err){$('#result').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
 }
 function downloadTicketPDF(){
@@ -340,7 +121,7 @@ function downloadTicketPDF(){
         <section class="box details">
           <div class="boxHead"><span>▣</span> بيانات الحجز</div>
           ${[
-            ["الاسم",x.name,"●"],["رقم الجواز",x.passport,"▣"],["رقم الموبايل",x.phone,"☎"],
+            ["الاسم",x.name,"●"],[x.passport?"رقم الجواز":"الرقم القومي",x.passport||x.national_id,"▣"],["رقم الموبايل",x.phone,"☎"],
             ["تاريخ الحجز",x.booking_date,"▦"],["تاريخ الكشف",x.exam_date,"◷"],
             ["مكان الكشف",x.exam_place,"⌖"],["الدولة المسافر إليها",x.destination,"✈"],["المبلغ المدفوع",x.payment+" جنيه","▤"]
           ].map(r=>`<div class="drow"><em>${r[2]}</em><b>${r[0]}</b><span>${esc(r[1])}</span></div>`).join("")}
@@ -460,5 +241,5 @@ loadCurrencyRates();
 loadEgyptNews();
 setInterval(loadCurrencyRates, 24*60*60*1000);
 </script>
-</body></html>
-</html>
+
+</script></body></html></body></html>
