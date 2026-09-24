@@ -89,13 +89,15 @@ main{max-width:1240px;margin:30px auto;padding:0 18px}
   <div class="brand">
     <div class="flagmark" aria-label="علم جمهورية مصر العربية">
       <svg viewBox="0 0 92 62" role="img" aria-hidden="true">
-        <rect width="92" height="20.67" y="0" fill="#CE1126"/>
-        <rect width="92" height="20.67" y="20.67" fill="#FFFFFF"/>
-        <rect width="92" height="20.66" y="41.34" fill="#000000"/>
-        <g transform="translate(46 31)">
-          <path d="M-5-9 C-8-7-9-3-7 1 L-10 6 L-4 5 L0 10 L4 5 L10 6 L7 1 C9-3 8-7 5-9 C3-6 2-4 0-4 C-2-4-3-6-5-9Z" fill="#C9A227"/>
-          <rect x="-2.2" y="-7" width="4.4" height="15" rx="1" fill="#C9A227"/>
-          <path d="M-11 1 Q-6-2 0 0 Q6-2 11 1 Q6 4 0 2 Q-6 4-11 1Z" fill="#C9A227"/>
+        <rect width="92" height="20.667" fill="#CE1126"/>
+        <rect y="20.667" width="92" height="20.666" fill="#FFFFFF"/>
+        <rect y="41.333" width="92" height="20.667" fill="#000000"/>
+        <g transform="translate(46 31)" fill="#C6A45A">
+          <path d="M-4.4-11.2c-3.6 1.5-6.5 4.8-7.4 8.8l5.4 2.2-8.7 3.8 10.7 1.5-6.2 5.5 11.4-2.3L0 12.2l5.2-2.2 11.4 2.3-6.2-5.5 10.7-1.5-8.7-3.8 5.4-2.2c-.9-4-3.8-7.3-7.4-8.8l-3.3 5.6H-1.1l-3.3-5.6Z"/>
+          <path d="M-5.8-4.4h11.6v13.7H-5.8z" fill="#C6A45A"/>
+          <path d="M-3.9-2.9h7.8v10.5h-7.8z" fill="#FFFFFF" opacity=".95"/>
+          <path d="M-3.9-2.9h2.6v10.5h-2.6z" fill="#CE1126"/>
+          <path d="M1.3-2.9h2.6v10.5H1.3z" fill="#000000"/>
         </g>
       </svg>
     </div>
@@ -116,7 +118,7 @@ main{max-width:1240px;margin:30px auto;padding:0 18px}
 <div class="egBar"></div><main>
 <section id="home" class="view active">
  <div class="hero card">
-  <div><span class="badge">● خدمات المواعيد الإلكترونية</span><h1>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</h1><p>بوابة إلكترونية حديثة لحجز مواعيد الكشف الطبي والاستعلام عنها لراغبي السفر للخارج.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn secondary" onclick="showView('search')">الاستعلام عن موعد</button></div></div>
+  <div><span class="badge">خدمات المواعيد الإلكترونية</span><h1>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج</h1><p>بوابة إلكترونية حديثة لحجز مواعيد الكشف الطبي والاستعلام عنها لراغبي السفر للخارج.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn secondary" onclick="showView('search')">الاستعلام عن موعد</button></div></div>
   <div class="heroSymbol">◫<span style="display:block;font-size:12px;margin-top:-45px;letter-spacing:2px;color:#d9b45a">مواعيد • سفر • صحة</span></div>
  
 </div>
@@ -161,6 +163,7 @@ main{max-width:1240px;margin:30px auto;padding:0 18px}
   <div class="field"><label>الاسم الكامل</label><input name="name" required placeholder="الاسم الكامل"></div>
   <div class="field"><label>رقم الجواز</label><input name="passport" required placeholder="رقم الجواز"></div>
   <div class="field"><label>رقم الهاتف</label><input name="phone" required placeholder="رقم الهاتف"></div>
+  <div class="field"><label>كلمة المرور</label><input name="password" type="password" required autocomplete="off" placeholder="أدخل كلمة المرور"></div>
   <div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div>
   <div class="field"><label>تاريخ الموعد</label><input name="exam_date" type="date" required></div>
   <div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div>
@@ -255,7 +258,7 @@ $('#bookForm').onsubmit=async e=>{
     const d=await supabaseRpc('create_appointment',{
       p_name:x.name,p_passport:x.passport,p_phone:x.phone,
       p_booking_date:x.booking_date,p_exam_date:x.exam_date,
-      p_destination:x.destination,p_status:x.status
+      p_destination:x.destination,p_status:x.status,p_password:x.password
     });
     const row=Array.isArray(d)?d[0]:d;
     e.target.reset();
@@ -291,7 +294,7 @@ function downloadTicketPDF(){
   <div class="ticket">
     <div class="hero">
       <div class="heroBrand">
-        <div class="brandSeal">✦</div>
+        <div class="brandSeal"></div>
         <div><b>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج الطبية</b><small>إدارة الخدمات الطبية</small></div>
       </div>
       <div class="heroTitle"><strong>تذكرة موعد الكشف الطبي</strong><span>للسفر للخارج</span><small>معًا نحو صحة أفضل .. من أجل سفر آمن</small></div>
