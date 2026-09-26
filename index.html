@@ -1,325 +1,438 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>نظام حجز مواعيد الكشف الطبي للسفر للخارج</title><style>
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:"Tahoma","Arial",sans-serif;background:#f3f5f7;color:#333;direction:rtl}.top{background:#075b91;color:#fff}.topin{max-width:1180px;margin:auto;min-height:112px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:15px}.logo{width:82px;height:82px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;border:4px solid #e8eef3}.logo svg{width:68px;height:68px}.brand h1{margin:0;font-size:25px;font-weight:700;line-height:1.45}.brand p{margin:4px 0 0;font-size:15px;opacity:.92}.headerSide{text-align:left;font-size:15px;line-height:1.8;opacity:.95}.nav{background:#fff;border-bottom:1px solid #d6dde3;box-shadow:0 1px 4px rgba(0,0,0,.08)}.navin{max-width:1180px;margin:auto;display:flex;align-items:stretch}.nav button{background:#fff;border:0;border-left:1px solid #e1e5e8;padding:20px 25px;color:#555;font:700 16px Tahoma,Arial;cursor:pointer;white-space:nowrap}.nav button:first-child{border-right:1px solid #e1e5e8}.nav button:hover,.nav button.active{background:#f0f6fb;color:#075b91;box-shadow:inset 0 -3px #075b91}main{max-width:1180px;margin:28px auto;padding:0 18px}.view{display:none}.view.active{display:block}.pageTitle{background:#fff;border:1px solid #d7dde2;border-bottom:3px solid #075b91;padding:20px 24px}.pageTitle h2{margin:0;color:#075b91;font-size:24px}.pageTitle p{margin:7px 0 0;color:#777;font-size:14px}.card{background:#fff;border:1px solid #d7dde2;box-shadow:0 1px 3px rgba(0,0,0,.05)}.searchCard{margin-top:18px;padding:22px}.searchGrid{display:grid;grid-template-columns:1fr 1fr 190px;gap:16px;align-items:end}.field label{display:block;font-weight:700;color:#555;margin-bottom:8px;font-size:15px}.field input,.field select{width:100%;height:48px;border:1px solid #c6cdd3;border-radius:3px;padding:0 12px;font:15px Tahoma,Arial;color:#333;background:#fff}.field input:focus,.field select:focus{outline:none;border-color:#0b70ae;box-shadow:0 0 0 2px rgba(11,112,174,.1)}.btn{height:48px;border:0;border-radius:3px;padding:0 24px;font:700 16px Tahoma,Arial;cursor:pointer}.primary{background:#075b91;color:#fff}.primary:hover{background:#064e7d}.notice{margin-top:16px;padding:14px 18px;border-radius:3px;font-size:15px}.notice.success{background:#eaf7ef;border:1px solid #b7dec5;color:#227744}.notice.error{background:#fff0f0;border:1px solid #e1b5b5;color:#a32626}.result{margin-top:18px;padding:18px}.resultHead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d8e0e6;padding-bottom:14px}.resultHead h3{margin:0;color:#075b91;font-size:20px}.status{background:#28a567;color:#fff;border-radius:3px;padding:8px 15px;font-size:14px;font-weight:700}.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.panel{border:1px solid #d6dde3}.panel h3{margin:0;background:#edf4f8;color:#075b91;padding:12px 15px;font-size:17px;border-bottom:1px solid #d6dde3}.row{display:grid;grid-template-columns:170px 1fr;min-height:48px;align-items:center;border-bottom:1px solid #e7eaed;padding:0 14px}.row:last-child{border-bottom:0}.row span{color:#777}.row b{color:#333}.note{margin-top:18px;background:#fffdf0;border:1px solid #eadc9b;padding:14px 17px;color:#6b5c18;font-size:14px}.ticketAction{margin-top:16px;text-align:left;display:flex;gap:10px;justify-content:flex-start;flex-wrap:wrap}.cancelBtn{height:48px;border:0;border-radius:3px;padding:0 24px;font:700 16px Tahoma,Arial;cursor:pointer;background:#b32626;color:#fff}.cancelBtn:hover{background:#941f1f}.cancelBtn:disabled{opacity:.6;cursor:not-allowed}.hero{padding:32px;background:#fff;border:1px solid #d7dde2}.hero h2{margin:0;color:#075b91;font-size:27px}.hero p{color:#666;line-height:1.9}.actions{display:flex;gap:12px;margin-top:20px}.form{margin-top:18px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px}.form .full{grid-column:1/-1}.sectionTitle{margin-bottom:16px}.sectionTitle h2{margin:0;color:#075b91}.sectionTitle p{margin:6px 0;color:#777}.footer{margin-top:45px;background:#075b91;color:#fff;text-align:center;padding:25px 15px;font-size:13px;line-height:2}.footer small{opacity:.85}@media(max-width:800px){.topin{min-height:auto;padding:12px 15px}.headerSide{display:none}.brand h1{font-size:18px}.brand p{font-size:12px}.logo{width:60px;height:60px}.logo svg{width:48px;height:48px}.navin{overflow-x:auto}.nav button{padding:16px 14px;font-size:13px}.searchGrid,.columns,.form{grid-template-columns:1fr}.row{grid-template-columns:125px 1fr}.ticketAction{text-align:center}.actions{flex-direction:column}}
-
-
-/* اختيار نوع الرقم */
-.idChoiceField{margin-top:4px}
-.choiceTitle{display:flex!important;align-items:center;gap:8px}
-.choiceTitle span{font-size:12px;color:#8b98a5;font-weight:600}
-.idChoice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-.idChoiceBtn{
-  appearance:none;border:2px solid #cbd8e2;background:#fff;border-radius:10px;
-  padding:15px 12px;min-height:72px;cursor:pointer;text-align:center;
-  color:#274c69;font-family:inherit;transition:.15s ease;
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حجز مواعيد الكشف الطبي للسفر للخارج</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Tahoma","Arial",sans-serif;background:linear-gradient(180deg,#edf5fb,#f7fbff);color:#173b61}
+button,input,select{font-family:inherit}
+.top{background:linear-gradient(135deg,#063d70,#0c5b91);color:#fff}
+.topin{max-width:1400px;margin:auto;min-height:108px;padding:14px 42px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.govBrand{display:flex;align-items:center;gap:18px}
+.ministryLogo{width:88px;height:88px;border-radius:50%;background:#fff;padding:5px;display:grid;place-items:center;box-shadow:0 3px 12px #0003;overflow:hidden}.ministryLogo img{width:100%;height:100%;object-fit:contain;border-radius:50%}.emblem{width:76px;height:82px;background:transparent;display:grid;place-items:center;overflow:hidden}.emblem img{width:64px;height:78px;object-fit:contain;filter:drop-shadow(0 2px 4px #0005)}
+.emblem span{font-size:42px}
+.govText{line-height:1.55}.govText b{display:block;font-size:20px}.govText small{display:block;line-height:1.35;font-size:13px}
+.siteTitle{text-align:right}.siteTitle b{display:block;font-size:29px}.siteTitle small{font-size:18px;opacity:.95}
+.nav{background:#fff;border-bottom:1px solid #d4dfeb;box-shadow:0 2px 8px #00000012}
+.navin{max-width:1400px;margin:auto;display:flex;justify-content:flex-start;overflow:auto}
+.nav button{border:0;background:#fff;color:#526b84;padding:18px 28px;font-weight:700;font-size:16px;white-space:nowrap;cursor:pointer}
+.nav button:hover,.nav button.active{color:#0d5fa5;background:#f2f8fd;border-bottom:3px solid #176fc0}
+main{max-width:1400px;margin:auto}
+.view{display:none}.view.active{display:block}
+.hero{min-height:390px;background:
+linear-gradient(90deg,rgba(4,44,83,.94),rgba(5,62,111,.78) 58%,rgba(5,62,111,.28)),
+url("https://media.elbalad.news/2024/10/large/1076/8/242.jpeg") center/cover no-repeat;
+color:#fff;display:flex;align-items:center;padding:55px 70px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+radial-gradient(circle at 18% 35%,#ffffff18 0 8%,transparent 8.2%),
+linear-gradient(165deg,transparent 0 45%,#ffffff0b 45% 52%,transparent 52% 100%)}
+.heroContent{position:relative;z-index:1;max-width:720px}
+.hero h1{font-size:44px;line-height:1.25;margin:0 0 15px}
+.hero p{font-size:20px;line-height:1.9;margin:0 0 28px}
+.heroActions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{border:0;border-radius:28px;padding:14px 30px;font-size:16px;font-weight:800;cursor:pointer}
+.btnBlue{background:#fff;color:#0b568e}.btnGreen{background:#10a36c;color:#fff}.btnRed{background:#ef3652;color:#fff}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:42px 34px}
+.feature{background:rgba(255,255,255,.96);border:1px solid #d3e1ee;border-radius:16px;padding:30px 24px;text-align:center;box-shadow:0 10px 28px #123c5d18}
+.icon{width:88px;height:88px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:40px}
+.icon.green{background:#dff7ed;color:#109b68}.icon.blue{background:#e4f1ff;color:#176dc0}.icon.red{background:#ffe6ec;color:#ed3150}
+.feature h2{margin:0 0 10px;font-size:24px}.feature p{color:#63798e;line-height:1.8;min-height:70px}
+.feature .btn{width:100%;margin-top:8px}
+.info{margin:0 34px 42px;background:#e5f2ff;border:1px solid #b9d8f2;border-radius:14px;padding:30px;display:grid;grid-template-columns:230px 1fr;gap:30px;align-items:center}
+.infoArt{font-size:120px;text-align:center}.info h2{margin:0 0 14px}.info li{margin:12px 0;color:#345875}
+.page{padding:34px}.pageTitle{background:#fff;border:1px solid #d7e3ec;border-radius:12px 12px 0 0;padding:24px}.pageTitle h2{margin:0;color:#0d4f80}.pageTitle p{margin:8px 0 0;color:#6d7f90}
+.card{background:#fff;border:1px solid #d7e3ec;border-radius:0 0 12px 12px;padding:25px;box-shadow:0 5px 20px #123c5d0b}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}
+.field label{display:block;font-weight:800;margin-bottom:8px;color:#35566f}
+.field input,.field select{width:100%;height:52px;border:1px solid #c4d4e1;border-radius:9px;padding:0 14px;font-size:16px;background:#fff;color:#233f57}
+.field input:focus,.field select:focus{outline:none;border-color:#1872b8;box-shadow:0 0 0 3px #1872b81a}
+.idChoice{display:grid;grid-template-columns:1fr 1fr;gap:10px}.idChoice button{border:2px solid #c9d9e6;background:#fff;border-radius:10px;padding:13px;cursor:pointer;color:#2e5875}.idChoice button.selected{border-color:#176fc0;background:#edf7ff}
+.searchGrid{display:grid;grid-template-columns:1fr 1.4fr 160px;gap:14px;align-items:end}
+.notice{margin-top:15px;padding:15px;border-radius:9px}.success{background:#e8f8f0;color:#16764e;border:1px solid #b9e1ce}.error{background:#fff0f1;color:#a52b38;border:1px solid #efbcc3}
+.result{margin-top:18px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.panel{border:1px solid #d4e0e9;border-radius:10px;overflow:hidden}.panel h3{margin:0;padding:14px;background:#edf6fd;color:#0d5487}.row{display:grid;grid-template-columns:150px 1fr;padding:13px;border-bottom:1px solid #e6edf2}.row:last-child{border-bottom:0}.status{display:inline-block;background:#16a06a;color:#fff;border-radius:20px;padding:8px 15px;font-weight:800}
+.resultHead{display:flex;justify-content:space-between;align-items:center}.ticketAction{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.footer{background:linear-gradient(135deg,#063d70,#0a4778);color:#fff;padding:48px 30px;text-align:center;margin-top:0;position:relative;overflow:hidden}.footer b{font-size:20px}.footer small{display:block;margin-top:8px;opacity:.85}
+@media(max-width:800px){
+.topin{padding:10px 12px;min-height:auto}.siteTitle b{font-size:17px}.siteTitle small{font-size:11px}.govText{display:block}.govText b{font-size:12px}.govText small{display:block;line-height:1.35;font-size:10px}.ministryLogo{width:52px;height:52px}.emblem{width:52px;height:58px}.emblem img{width:45px;height:54px}
+.hero{min-height:420px;padding:45px 24px}.hero h1{font-size:32px}.hero p{font-size:17px}
+.features,.columns,.form,.searchGrid,.info{grid-template-columns:1fr}.features{padding:25px 16px}.info{margin:0 16px 28px}.page{padding:20px 12px}.nav button{padding:15px 17px;font-size:14px}.row{grid-template-columns:125px 1fr}
 }
-.idChoiceBtn strong{display:block;font-size:18px;margin-bottom:5px}
-.idChoiceBtn small{display:block;font-size:13px;color:#71808d}
-.idChoiceBtn.selected{border-color:#1769a6;background:#eef7fd;box-shadow:0 0 0 3px rgba(23,105,166,.10)}
-.srOnlySelect{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-@media(max-width:600px){
-  .idChoice{grid-template-columns:1fr 1fr;gap:8px}
-  .idChoiceBtn{padding:12px 7px;min-height:68px}
-  .idChoiceBtn strong{font-size:16px}
-  .idChoiceBtn small{font-size:12px}
-}
-</style></head><body><header class="top"><div class="topin"><div class="brand"><div class="logo"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#075b91"/><path d="M25 30h50v40H25z" fill="#fff"/><path d="M31 36h38v28H31z" fill="#075b91"/><path d="M50 18l6 10h-12z" fill="#d6a83c"/><path d="M36 42h28v4H36zm0 8h28v4H36zm0 8h28v4H36z" fill="#fff"/></svg></div><div><h1>نظام حجز مواعيد الكشف الطبي للسفر للخارج</h1><p>بوابة إلكترونية لحجز المواعيد والاستعلام عنها</p></div></div><div class="headerSide">خدمات إلكترونية<br>لراغبي السفر للخارج</div></div></header>
-<nav class="nav"><div class="navin"><button data-view="home">الرئيسية</button><button data-view="book">حجز موعد جديد</button><button class="active" data-view="search">الاستعلام عن موعد</button><button data-view="resultInfo">الاستعلام عن نتيجة الكشف</button><button data-view="guide">دليل المستخدم</button><button onclick="showView('home')">تسجيل خروج</button></div></nav>
+</style>
+
+<style>
+.medical-results-download{margin-top:20px;padding:22px;background:#f4f9fd;border:1px solid #cbddea;border-radius:14px}
+.medical-results-download h3{margin:0 0 8px;color:#0d4f80}
+.medical-results-download p{margin:0 0 14px;color:#5b7185;line-height:1.8}
+.medical-results-download button:disabled{background:#aab8c5;cursor:not-allowed}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topin">
+    <div class="govBrand"><div class="ministryLogo"><img src="https://mediaaws-live.almasryalyoum.com/AMAYLivePictures/portalimages/news/original/2024/01/27/2308408_0.jpeg" alt="شعار وزارة الصحة والسكان"></div>
+      <div class="emblem"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Coat_of_arms_of_Egypt_%28Official%29.svg" alt="شعار جمهورية مصر العربية"></div>
+      <div class="govText"><b>جمهورية مصر العربية</b><small>وزارة الصحة والسكان</small><small>الخدمات الطبية</small></div>
+    </div>
+    <div class="siteTitle"><b>نظام حجز مواعيد الكشف الطبي</b><small>للسفر للخارج</small></div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="navin">
+    <button class="active" data-view="home">الرئيسية</button>
+    <button data-view="book">حجز موعد جديد</button>
+    <button data-view="search">الاستعلام عن الحجز</button>
+    <button data-view="cancelInfo">إلغاء الحجز</button>
+    <button data-view="guide">دليل المستخدم</button>
+  </div>
+</nav>
+
 <main>
-<section id="home" class="view"><div class="hero"><h2>نظام حجز مواعيد الكشف الطبي للسفر للخارج</h2><p>يمكنك من خلال هذه البوابة حجز موعد جديد أو الاستعلام عن بيانات موعد سبق حجزه.</p><div class="actions"><button class="btn primary" onclick="showView('book')">حجز موعد جديد</button><button class="btn primary" onclick="showView('search')">الاستعلام عن موعد</button></div></div></section>
-<section id="book" class="view"><div class="sectionTitle"><h2>حجز موعد جديد</h2><p>برجاء إدخال البيانات المطلوبة بدقة.</p></div><form id="bookForm" class="card form"><div class="field"><label>الاسم بالكامل</label><input name="name" required></div><div class="field idChoiceField">
-<label class="choiceTitle">اختر نوع الرقم <span>مطلوب</span></label>
-<div class="idChoice" role="group" aria-label="نوع الرقم">
-  <button type="button" class="idChoiceBtn selected" data-idtype="passport">
-    <strong>رقم جواز السفر</strong>
-    <small>مثال: A12345678</small>
-  </button>
-  <button type="button" class="idChoiceBtn" data-idtype="national_id">
-    <strong>الرقم القومي</strong>
-    <small>14 رقمًا</small>
-  </button>
-</div>
-<select name="id_type" id="idType" class="srOnlySelect" aria-hidden="true" tabindex="-1">
-  <option value="passport">رقم جواز السفر</option>
-  <option value="national_id">الرقم القومي</option>
-</select>
-</div>
-<div class="field"><label id="idNumberLabel">رقم جواز السفر</label><input name="id_number" id="idNumber" required autocomplete="off" inputmode="text" placeholder="أدخل رقم الجواز مثل A12345678"></div><div class="field"><label>رقم الهاتف</label><input name="phone" required></div><div class="field"><label>كلمة المرور</label><input name="password" type="password" required autocomplete="off"></div><div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div><div class="field"><label>تاريخ الكشف</label><input name="exam_date" type="date" required></div><div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div><div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option><option>ملغى</option><option>مكتمل</option></select></div><div class="full"><button class="btn primary">حفظ الموعد</button></div></form><div id="bookMsg"></div></section>
-<section id="search" class="view active"><div class="pageTitle"><h2>الاستعلام عن موعد الكشف الطبي</h2><p>يمكن الاستعلام عن الموعد باستخدام رقم الجواز أو الرقم القومي أو رقم الهاتف أو رقم التذكرة.</p></div><div class="card searchCard"><div class="searchGrid"><div class="field"><label>طريقة البحث</label><select id="searchType"><option value="passport">رقم جواز السفر</option><option value="national_id">الرقم القومي</option><option value="phone">رقم الهاتف</option><option value="ticket">رقم التذكرة</option></select></div><div class="field"><label>بيانات البحث</label><input id="query" placeholder="أدخل بيانات البحث"></div><button class="btn primary" onclick="searchAppointment()">بحث</button></div></div><div id="result"></div></section>
-<section id="resultInfo" class="view"><div class="pageTitle"><h2>الاستعلام عن نتيجة الكشف</h2><p>هذه الخدمة غير مفعلة حاليًا.</p></div></section>
-<section id="guide" class="view"><div class="pageTitle"><h2>دليل المستخدم</h2><p>اختر حجز موعد جديد لإضافة حجز، أو الاستعلام عن موعد لعرض بيانات حجز موجود.</p></div></section>
-</main><footer class="footer">نظام حجز مواعيد الكشف الطبي للسفر للخارج<br><small>بوابة إلكترونية مستقلة لإدارة المواعيد</small></footer>
-<script>
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-const API='';
-const SUPABASE_URL = "https://zlixgafnbsuoekwngtbl.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_NARzN9jNZ6jjGGYjI5DF_g_BbmjL2H5";
+<section id="home" class="view active">
+  <div class="hero">
+    <div class="heroContent">
+      <h1>مرحبًا بك في نظام حجز مواعيد الكشف الطبي</h1>
+      <p>احجز موعدك بسهولة ويسر لإجراء الفحوصات الطبية المطلوبة للسفر للخارج، وتابع حالة حجزك واستعلم عن بيانات الموعد في أي وقت.</p>
+      <div class="heroActions">
+        <button class="btn btnGreen" onclick="showView('book')">📅 احجز موعد جديد</button>
+        <button class="btn btnBlue" onclick="showView('search')">🔎 الاستعلام عن الحجز</button>
+      </div>
+    </div>
+  </div>
 
-async function supabaseRpc(functionName, body){
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`, {
+  <section class="features">
+    <article class="feature">
+      <div class="icon green">📅</div>
+      <h2>حجز موعد جديد</h2>
+      <p>احجز موعد الكشف الطبي المطلوب للسفر للخارج.</p>
+      <button class="btn btnGreen" onclick="showView('book')">احجز الآن</button>
+    </article>
+    <article class="feature">
+      <div class="icon blue">🔎</div>
+      <h2>الاستعلام عن الحجز</h2>
+      <p>استعلم عن تفاصيل حجزك باستخدام رقم الجواز أو الرقم القومي أو الهاتف أو التذكرة.</p>
+      <button class="btn btnBlue" onclick="showView('search')">استعلام عن الحجز</button>
+    </article>
+    <article class="feature">
+      <div class="icon red">✕</div>
+      <h2>إلغاء الحجز</h2>
+      <p>يمكن إلغاء الحجز بعد الاستعلام عنه باستخدام كلمة المرور الخاصة بالحجز.</p>
+      <button class="btn btnRed" onclick="showView('search')">إلغاء الحجز</button>
+    </article>
+  </section>
+
+  <section class="info">
+    <div class="infoArt">🛂✈️</div>
+    <div>
+      <h2>معلومات مهمة</h2>
+      <ul>
+        <li>يرجى التأكد من صحة بيانات الحجز قبل الحفظ.</li>
+        <li>احتفظ برقم التذكرة بعد إتمام الحجز.</li>
+        <li>يمكن الاستعلام من أي هاتف متصل بالإنترنت.</li>
+        <li>كلمة المرور مطلوبة عند إلغاء الحجز.</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section id="book" class="view page">
+  <div class="pageTitle"><h2>حجز موعد الكشف الطبي</h2><p>إدخال بيانات صاحب الموعد</p></div>
+  <form id="bookForm" class="card form">
+    <div class="field"><label>الاسم بالكامل</label><input name="name" required></div>
+    <div class="field">
+      <label>نوع الرقم</label>
+      <div class="idChoice">
+        <button type="button" class="selected" data-idtype="passport">رقم جواز السفر<br><small>A12345678</small></button>
+        <button type="button" data-idtype="national_id">الرقم القومي<br><small>14 رقمًا</small></button>
+      </div>
+      <select name="id_type" id="idType" hidden><option value="passport">رقم جواز السفر</option><option value="national_id">الرقم القومي</option></select>
+    </div>
+    <div class="field"><label id="idNumberLabel">رقم جواز السفر</label><input name="id_number" id="idNumber" required autocomplete="off" placeholder="أدخل رقم الجواز مثل A12345678"></div>
+    <div class="field"><label>رقم الهاتف</label><input name="phone" required placeholder="01xxxxxxxxx"></div>
+    <div class="field"><label>كلمة المرور</label><input name="password" type="password" required autocomplete="off"></div>
+    <div class="field"><label>تاريخ الحجز</label><input name="booking_date" type="date" required></div>
+    <div class="field"><label>تاريخ الكشف</label><input name="exam_date" type="date" required></div>
+    <div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div>
+    <div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option></select></div>
+    <div class="full"><button class="btn btnBlue" type="submit">حفظ الموعد</button></div>
+  </form>
+  <div id="bookMsg"></div>
+</section>
+
+<section id="search" class="view page">
+  <div class="pageTitle"><h2>الاستعلام عن موعد الكشف الطبي</h2><p>ابحث برقم الجواز أو الرقم القومي أو رقم الهاتف أو رقم التذكرة.</p></div>
+  <div class="card">
+    <div class="searchGrid">
+      <div class="field"><label>نوع البحث</label><select id="searchType"><option value="passport">رقم جواز السفر</option><option value="national_id">الرقم القومي</option><option value="phone">رقم الهاتف</option><option value="ticket">رقم التذكرة</option></select></div>
+      <div class="field"><label>بيانات البحث</label><input id="query" placeholder="أدخل بيانات البحث"></div>
+      <button class="btn btnBlue" onclick="searchAppointment()">بحث 🔎</button>
+    </div>
+  </div>
+  <div id="result"></div>
+</section>
+
+<section id="cancelInfo" class="view page">
+  <div class="pageTitle"><h2>إلغاء الحجز</h2><p>لأمان الحجز، لا يمكن الإلغاء إلا بعد الاستعلام عن الحجز وإدخال كلمة المرور الخاصة به.</p></div>
+  <div class="card">
+    <button class="btn btnRed" onclick="showView('search')">الذهاب للاستعلام عن الحجز</button>
+  </div>
+</section>
+
+<section id="guide" class="view page">
+  <div class="pageTitle"><h2>دليل المستخدم</h2><p>خطوات بسيطة لاستخدام البوابة.</p></div>
+  <div class="card">
+    <p>1. اختر «حجز موعد جديد» وأدخل البيانات المطلوبة.</p>
+    <p>2. احتفظ برقم التذكرة بعد نجاح الحجز.</p>
+    <p>3. من «الاستعلام عن الحجز» يمكنك البحث بأي وسيلة متاحة.</p>
+    <p>4. بعد ظهور الحجز يمكنك إلغاؤه بعد إدخال كلمة المرور.</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <b>نظام حجز مواعيد الكشف الطبي للسفر للخارج</b>
+  <small>بوابة إلكترونية مستقلة لإدارة المواعيد</small>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+
+const SUPABASE_URL="https://zlixgafnbsuoekwngtbl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_NARzN9jNZ6jjGGYjI5DF_g_BbmjL2H5";
+
+async function supabaseRpc(functionName,body){
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`,{
     method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "apikey":SUPABASE_PUBLISHABLE_KEY
-    },
-    body:JSON.stringify(body || {})
+    headers:{"Content-Type":"application/json","apikey":SUPABASE_PUBLISHABLE_KEY},
+    body:JSON.stringify(body||{})
   });
-  let data=null;
-  try{ data=await r.json(); }catch(_){
-    data=null;
-  }
-  if(!r.ok) throw new Error((data&&(data.message||data.error||data.hint))||"تعذر الاتصال بقاعدة البيانات.");
+  let data=null; try{data=await r.json()}catch(_){}
+  if(!r.ok)throw new Error((data&&(data.message||data.error||data.hint))||"تعذر الاتصال بقاعدة البيانات.");
   return data;
 }
-function normalize(v){return String(v??'').trim().replace(/\s+/g,' ')}
-function validPassport(v){return /^A\d{8}$/i.test(normalize(v));}
-function validNationalId(v){return /^\d{14}$/.test(normalize(v));}
-function validPhone(v){return /^01\d{9}$/.test(normalize(v));}
-function validTicket(v){return /^mc\d{11}$/i.test(normalize(v));}
-function esc(v){return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;',"'":"&#39;"}[s]));}
-$$('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
-function showView(id){$$('.view').forEach(v=>v.classList.remove('active'));$('#'+id).classList.add('active');$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));}
-document.querySelectorAll('.idChoiceBtn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
+function normalize(v){return String(v??"").trim().replace(/\s+/g," ")}
+function validPassport(v){return /^A\d{8}$/i.test(normalize(v))}
+function validNationalId(v){return /^\d{14}$/.test(normalize(v))}
+function validPhone(v){return /^01\d{9}$/.test(normalize(v))}
+function validTicket(v){return /^mc\d{11}$/i.test(normalize(v))}
+function esc(v){return String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]))}
+
+function showView(id){
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  $("#"+id).classList.add("active");
+  $$(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$$(".nav button").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+
+$$(".idChoice button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
     const type=btn.dataset.idtype;
-    $('#idType').value=type;
-    document.querySelectorAll('.idChoiceBtn').forEach(b=>b.classList.toggle('selected',b===btn));
-    $('#idType').dispatchEvent(new Event('change'));
+    $("#idType").value=type;
+    $$(".idChoice button").forEach(x=>x.classList.toggle("selected",x===btn));
+    const national=type==="national_id";
+    $("#idNumberLabel").textContent=national?"الرقم القومي":"رقم جواز السفر";
+    $("#idNumber").placeholder=national?"أدخل الرقم القومي المكون من 14 رقمًا":"أدخل رقم الجواز مثل A12345678";
+    $("#idNumber").value="";
   });
 });
-$('#idType').onchange=()=>{
- const isNational=$('#idType').value==='national_id';
- $('#idNumberLabel').textContent=isNational?'الرقم القومي':'رقم جواز السفر';
- $('#idNumber').placeholder=isNational?'أدخل الرقم القومي المكون من 14 رقمًا':'أدخل رقم الجواز مثل A12345678';
- $('#idNumber').value='';
-};
-$('#bookForm').onsubmit=async e=>{
- e.preventDefault(); const x=Object.fromEntries(new FormData(e.target));
- x.name=normalize(x.name);x.id_number=normalize(x.id_number);x.phone=normalize(x.phone);
- if(x.id_type==='passport')x.id_number=x.id_number.toUpperCase();
- if(x.name.length<3)return $('#bookMsg').innerHTML='<div class="notice error">يرجى كتابة الاسم بشكل صحيح.</div>';
- if(x.id_type==='passport'&&!validPassport(x.id_number))return $('#bookMsg').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
- if(x.id_type==='national_id'&&!validNationalId(x.id_number))return $('#bookMsg').innerHTML='<div class="notice error">الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.</div>';
- if(!validPhone(x.phone))return $('#bookMsg').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
- if(x.booking_date&&x.exam_date&&x.exam_date<x.booking_date)return $('#bookMsg').innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
- try{
-    const d=await supabaseRpc('create_appointment',{
-      p_name:x.name,p_id_type:x.id_type,p_id_number:x.id_number,p_phone:x.phone,
-      p_booking_date:x.booking_date,p_exam_date:x.exam_date,
+
+$("#bookForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const x=Object.fromEntries(new FormData(e.target));
+  x.name=normalize(x.name);x.id_number=normalize(x.id_number);x.phone=normalize(x.phone);
+  if(x.id_type==="passport")x.id_number=x.id_number.toUpperCase();
+  if(x.name.length<3)return $("#bookMsg").innerHTML='<div class="notice error">يرجى كتابة الاسم بشكل صحيح.</div>';
+  if(x.id_type==="passport"&&!validPassport(x.id_number))return $("#bookMsg").innerHTML='<div class="notice error">رقم الجواز غير صحيح.</div>';
+  if(x.id_type==="national_id"&&!validNationalId(x.id_number))return $("#bookMsg").innerHTML='<div class="notice error">الرقم القومي يجب أن يتكون من 14 رقمًا.</div>';
+  if(!validPhone(x.phone))return $("#bookMsg").innerHTML='<div class="notice error">رقم الهاتف غير صحيح.</div>';
+  if(x.exam_date<x.booking_date)return $("#bookMsg").innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
+  try{
+    const d=await supabaseRpc("create_appointment",{
+      p_name:x.name,p_id_type:x.id_type,p_id_number:x.id_number,
+      p_phone:x.phone,p_booking_date:x.booking_date,p_exam_date:x.exam_date,
       p_destination:x.destination,p_status:x.status,p_password:x.password
     });
     const row=Array.isArray(d)?d[0]:d;
-    e.target.reset(); $('#idType').value='passport'; document.querySelectorAll('.idChoiceBtn').forEach(b=>b.classList.toggle('selected',b.dataset.idtype==='passport')); $('#idType').dispatchEvent(new Event('change'));
-    $('#bookMsg').innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(row.ticket)}</strong></div>`;
-  }catch(err){$('#bookMsg').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
-};
+    e.target.reset();
+    $("#idType").value="passport";
+    $$(".idChoice button").forEach(b=>b.classList.toggle("selected",b.dataset.idtype==="passport"));
+    $("#idNumberLabel").textContent="رقم جواز السفر";
+    $("#idNumber").placeholder="أدخل رقم الجواز مثل A12345678";
+    $("#bookMsg").innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(row.ticket)}</strong></div>`;
+  }catch(err){$("#bookMsg").innerHTML=`<div class="notice error">${esc(err.message)}</div>`}
+});
+
 async function searchAppointment(){
- const q=normalize($('#query').value); const type=$('#searchType').value;
- if(!q)return $('#result').innerHTML='<div class="notice error">أدخل بيانات البحث.</div>';
- if(type==='passport'&&!validPassport(q))return $('#result').innerHTML='<div class="notice error">رقم الجواز غير صحيح. يجب أن يبدأ بحرف A ويتبعه 8 أرقام.</div>';
- if(type==='national_id'&&!validNationalId(q))return $('#result').innerHTML='<div class="notice error">الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.</div>';
- if(type==='phone'&&!validPhone(q))return $('#result').innerHTML='<div class="notice error">رقم الهاتف غير صحيح. يجب أن يتكون من 11 رقمًا ويبدأ بـ 01.</div>';
- if(type==='ticket'&&!validTicket(q))return $('#result').innerHTML='<div class="notice error">رقم التذكرة غير صحيح. يجب أن يبدأ بـ mc ويتبعه 11 رقمًا.</div>';
- try{
- const d=await supabaseRpc('search_appointment',{p_query:q});
- const x=Array.isArray(d)?d[0]:d;
- if(!x)throw new Error('لا يوجد حجز مطابق');
- window.currentAppointment=x;
- const identityLabel=x.passport?'رقم الجواز':'الرقم القومي';
- const identityValue=x.passport||x.national_id||'-';
- $('#result').innerHTML=`<div class="result card"><div class="resultTop"><div><b>بيانات الموعد</b><div class="tiny">تم العثور على السجل المطلوب</div></div><span class="status">${esc(x.status||'تم الحجز')}</span></div><div class="columns"><div class="panel"><h3>بيانات صاحب الموعد</h3><div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div><div class="row"><span>${identityLabel}</span><b>${esc(identityValue)}</b></div><div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div></div><div class="panel"><h3>تفاصيل الموعد</h3><div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div><div class="row"><span>تاريخ الموعد</span><b>${esc(x.exam_date)}</b></div><div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place)}</b></div><div class="row"><span>الدولة المسافر إليها</span><b>${esc(x.destination)}</b></div><div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div><div class="row"><span>المبلغ المدفوع</span><b>${esc(x.payment)} جنيه</b></div></div></div><div class="ticketAction"><button class="primary" onclick="downloadTicketPDF()">تحميل التذكرة PDF</button><button class="cancelBtn" onclick="cancelAppointment()">إلغاء الحجز</button></div></div>`;
- }catch(err){$('#result').innerHTML=`<div class="notice error">${esc(err.message)}</div>`;}
-}
-async function cancelAppointment(){
-  const x=window.currentAppointment;
-  if(!x)return;
-  if((x.status||'').trim()==='ملغى'){
-    return alert('هذا الحجز ملغى بالفعل.');
-  }
-  const password=prompt('أدخل كلمة المرور لإلغاء الحجز:');
-  if(password===null)return;
-  if(!password)return alert('يجب إدخال كلمة المرور.');
-  const ok=confirm('هل أنت متأكد من إلغاء هذا الحجز؟\nسيتم تغيير حالته إلى «ملغى» ولن يتم حذف بياناته.');
-  if(!ok)return;
+  const q=normalize($("#query").value),type=$("#searchType").value;
+  if(!q)return $("#result").innerHTML='<div class="notice error">أدخل بيانات البحث.</div>';
+  if(type==="passport"&&!validPassport(q))return $("#result").innerHTML='<div class="notice error">رقم الجواز غير صحيح.</div>';
+  if(type==="national_id"&&!validNationalId(q))return $("#result").innerHTML='<div class="notice error">الرقم القومي غير صحيح.</div>';
+  if(type==="phone"&&!validPhone(q))return $("#result").innerHTML='<div class="notice error">رقم الهاتف غير صحيح.</div>';
+  if(type==="ticket"&&!validTicket(q))return $("#result").innerHTML='<div class="notice error">رقم التذكرة غير صحيح.</div>';
   try{
-    const d=await supabaseRpc('cancel_appointment',{
-      p_ticket:x.ticket,
-      p_password:password
-    });
-    const row=Array.isArray(d)?d[0]:d;
-    x.status='ملغى';
-    const result=document.getElementById('result');
-    if(result){
-      const status=result.querySelector('.status');
-      if(status)status.textContent='ملغى';
-      const oldBtn=result.querySelector('.cancelBtn');
-      if(oldBtn){oldBtn.disabled=true;oldBtn.textContent='تم إلغاء الحجز';}
-      let msg=result.querySelector('.cancelMsg');
-      if(!msg){msg=document.createElement('div');msg.className='notice success cancelMsg';result.appendChild(msg);}
-      msg.textContent='✓ تم إلغاء الحجز بنجاح.';
+    const d=await supabaseRpc("search_appointment",{p_query:q});
+    const x=Array.isArray(d)?d[0]:d;
+    if(!x)throw new Error("لا يوجد حجز مطابق");
+    window.currentAppointment=x;
+    const label=x.passport?"رقم الجواز":"الرقم القومي";
+    const value=x.passport||x.national_id||"-";
+    $("#result").innerHTML=`
+      <div class="card result">
+        <div class="resultHead"><h2>بيانات الموعد</h2><span class="status">${esc(x.status||"محجوز")}</span></div>
+        <div class="columns">
+          <div class="panel"><h3>بيانات صاحب الموعد</h3>
+            <div class="row"><span>الاسم</span><b>${esc(x.name)}</b></div>
+            <div class="row"><span>${label}</span><b>${esc(value)}</b></div>
+            <div class="row"><span>رقم الهاتف</span><b>${esc(x.phone)}</b></div>
+          </div>
+          <div class="panel"><h3>تفاصيل الموعد</h3>
+            <div class="row"><span>تاريخ الحجز</span><b>${esc(x.booking_date)}</b></div>
+            <div class="row"><span>تاريخ الكشف</span><b>${esc(x.exam_date)}</b></div>
+            <div class="row"><span>مكان الكشف</span><b>${esc(x.exam_place||"حميات العباسية")}</b></div>
+            <div class="row"><span>الدولة</span><b>${esc(x.destination)}</b></div>
+            <div class="row"><span>رقم التذكرة</span><b>${esc(x.ticket)}</b></div>
+          </div>
+        </div>
+        <div class="ticketAction">
+          <button class="btn btnBlue" onclick="downloadTicketPDF()">تحميل التذكرة</button><button class="btn btnBlue" onclick="downloadInvoice()">تحميل فاتورة الحجز</button>
+          <button class="btn btnRed" onclick="cancelAppointment()">إلغاء الحجز</button>
+        </div>
+      </div>`;
+    addMedicalResultsPanel();
+  }catch(err){$("#result").innerHTML=`<div class="notice error">${esc(err.message)}</div>`}
+}
+
+
+function addMedicalResultsPanel(){
+  const result=document.getElementById("result");
+  if(!result || document.getElementById("medicalResultsPanel")) return;
+  result.insertAdjacentHTML("beforeend",`
+    <div id="medicalResultsPanel" class="medical-results-download">
+      <h3>تحميل نتائج الكشف الطبي</h3>
+      <p id="medicalResultsStatus">🔒 لا يمكن تحميل النتيجة قبل مرور 3 أيام كاملة من تاريخ الكشف.</p>
+      <button id="medicalResultsButton" class="btn btnBlue" disabled>تحميل نتائج الكشف الطبي</button>
+    </div>`);
+  updateMedicalResultsButton();
+}
+function updateMedicalResultsButton(){
+  const x=window.currentAppointment, btn=document.getElementById("medicalResultsButton"), st=document.getElementById("medicalResultsStatus");
+  if(!x||!btn||!st)return;
+  const d=new Date(x.exam_date);
+  if(Number.isNaN(d.getTime())){btn.disabled=true;return;}
+  d.setDate(d.getDate()+3);
+  if(new Date()>=d){
+    const url=x.result_url||x.medical_result_url||"";
+    if(url){
+      btn.disabled=false; st.textContent="✅ نتائج الكشف الطبي متاحة للتحميل.";
+      btn.onclick=()=>window.open(url,"_blank","noopener");
+    }else{
+      btn.disabled=true; st.textContent="ℹ️ مرّت 3 أيام، لكن لم يتم رفع ملف النتيجة على الحجز حتى الآن.";
     }
-  }catch(err){
-    alert(err.message||'تعذر إلغاء الحجز.');
+  }else{
+    btn.disabled=true;
+    const hours=Math.ceil((d-new Date())/3600000);
+    st.textContent=`🔒 النتائج غير متاحة الآن. تصبح متاحة بعد 3 أيام كاملة من تاريخ الكشف. المتبقي تقريبًا ${hours} ساعة.`;
   }
+}
+
+async function cancelAppointment(){
+  const x=window.currentAppointment;if(!x)return;
+  if((x.status||"").trim()==="ملغى")return alert("هذا الحجز ملغى بالفعل.");
+  const password=prompt("أدخل كلمة المرور لإلغاء الحجز:");
+  if(password===null)return;
+  if(!password)return alert("يجب إدخال كلمة المرور.");
+  if(!confirm("هل أنت متأكد من إلغاء هذا الحجز؟"))return;
+  try{
+    await supabaseRpc("cancel_appointment",{p_ticket:x.ticket,p_password:password});
+    x.status="ملغى";
+    const s=$("#result .status");if(s)s.textContent="ملغى";
+    const b=$("#result .btnRed");if(b){b.disabled=true;b.textContent="تم إلغاء الحجز";}
+    $("#result").insertAdjacentHTML("beforeend",'<div class="notice success">✓ تم إلغاء الحجز بنجاح.</div>');
+  }catch(err){alert(err.message||"تعذر إلغاء الحجز.")}
+}
+
+function printDocument(title, bodyHtml){
+  const w = window.open("", "_blank", "width=900,height=800");
+  if(!w){ alert("اسمح بفتح النوافذ المنبثقة لتحميل المستند."); return; }
+  w.document.write(`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+  <title>${esc(title)}</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f3f7fa;color:#173b61;font-family:Tahoma,Arial,sans-serif}
+    .paper{width:210mm;min-height:297mm;margin:10mm auto;background:#fff;padding:18mm;border:1px solid #d7e2ea}
+    .head{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #0b5b91;padding-bottom:14px;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:65px;height:65px;object-fit:contain}
+    h1{font-size:24px;margin:0 0 6px}.sub{color:#63798e;font-size:13px}
+    .badge{background:#eaf4fc;color:#0b5b91;padding:10px 14px;border-radius:10px;font-weight:800}
+    table{width:100%;border-collapse:collapse;margin-top:15px}td,th{border:1px solid #d6e1e8;padding:11px;text-align:right}
+    th{background:#eef6fb}.total{font-size:20px;font-weight:900;background:#f0f8f4}
+    .note{margin-top:20px;padding:14px;background:#f7fafc;border:1px solid #dbe6ed;line-height:1.8}
+    .sign{display:flex;justify-content:space-between;margin-top:50px;color:#6b7f90}
+    @media print{body{background:#fff}.paper{margin:0;border:0;width:auto;min-height:auto}}
+  </style></head><body><div class="paper">${bodyHtml}</div>
+  <script>window.onload=()=>setTimeout(()=>window.print(),350)<\/script></body></html>`);
+  w.document.close();
+}
+
+function documentHeader(title, ticket){
+  return `<div class="head">
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Coat_of_arms_of_Egypt_%28Official%29.svg" alt="">
+      <div><h1>${esc(title)}</h1><div class="sub">نظام حجز مواعيد الكشف الطبي للسفر للخارج</div></div>
+    </div>
+    <div class="badge">رقم الحجز: ${esc(ticket||"-")}</div>
+  </div>`;
 }
 
 function downloadTicketPDF(){
   const x=window.currentAppointment;
-  if(!x)return;
-  const esc=v=>String(v??"-").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
-  x.payment=x.payment??2500;
-  x.exam_place=x.exam_place??"حميات العباسية";
-  x.governorate=x.governorate??"القاهرة";
-  x.destination=x.destination??"الأردن";
-
-  const t=document.createElement("div");
-  t.id="pdfTicket";
-  t.innerHTML=`
-  <div class="ticket">
-    <div class="hero">
-      <div class="heroBrand">
-        <div class="brandSeal"></div>
-        <div><b>نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج الطبية</b><small>إدارة الخدمات الطبية</small></div>
-      </div>
-      <div class="heroTitle"><strong>تذكرة موعد الكشف الطبي</strong><span>للسفر للخارج</span><small>معًا نحو صحة أفضل .. من أجل سفر آمن</small></div>
-      <div class="flagRibbon"><i></i><i></i><i></i></div>
-    </div>
-
-    <div class="wrap">
-      <div class="topGrid">
-        <div class="success">
-          <div class="ok">✓</div>
-          <div><b>تم تسجيل موعد الكشف الطبي بنجاح</b><span>يرجى الاحتفاظ بهذه التذكرة وإبرازها عند الحضور</span></div>
-        </div>
-        <div class="booking">
-          <label>رقم الحجز</label>
-          <strong>${esc(x.ticket)}</strong>
-          <div class="barcode">${Array.from({length:74},(_,n)=>`<i style="width:${n%7===0?3:2}px;height:${n%4===0?44:36}px"></i>`).join("")}</div>
-        </div>
-      </div>
-
-      <div class="mainGrid">
-        <section class="box details">
-          <div class="boxHead"><span>▣</span> بيانات الحجز</div>
-          ${[
-            ["الاسم",x.name,"●"],[x.passport?"رقم الجواز":"الرقم القومي",x.passport||x.national_id,"▣"],["رقم الموبايل",x.phone,"☎"],
-            ["تاريخ الحجز",x.booking_date,"▦"],["تاريخ الكشف",x.exam_date,"◷"],
-            ["مكان الكشف",x.exam_place,"⌖"],["الدولة المسافر إليها",x.destination,"✈"],["المبلغ المدفوع",x.payment+" جنيه","▤"]
-          ].map(r=>`<div class="drow"><em>${r[2]}</em><b>${r[0]}</b><span>${esc(r[1])}</span></div>`).join("")}
-        </section>
-
-        <section class="box instructions">
-          <div class="boxHead"><span>☷</span> تعليمات هامة</div>
-          <div class="rules">
-            <p><i>✓</i> يرجى الحضور قبل موعد الكشف بساعة على الأقل.</p>
-            <p><i>✓</i> إحضار جميع الفحوصات والتقارير الطبية إن وجدت.</p>
-            <p><i>✓</i> هذا الحجز لا يعتبر موافقة نهائية للسفر.</p>
-            <p><i>✓</i> الحجز غير قابل للتعديل أو الإلغاء.</p>
-          </div>
-          <div class="verify">
-            <div class="qr">${Array.from({length:169},(_,n)=>{let r=Math.floor(n/13),c=n%13;let on=((r*19+c*23+r*c*7)%11)<5;return `<i class="${on?'on':''}"></i>`}).join("")}</div>
-            <div class="vline"></div>
-            <div class="downloadBadge"><div class="pdfIcon">↓<small>PDF</small></div><b>تحميل التذكرة</b><span>بصيغة PDF</span></div>
-          </div>
-          <div class="caption">امسح رمز QR للتحقق من بيانات الحجز</div>
-        </section>
-      </div>
-    </div>
-
-    <div class="ticketFooter">
-      <div class="footerText">نظام حجز مواعيد الكشف الطبي لراغبي السفر للخارج الطبية<br><small>خدمة إلكترونية مستقلة لإدارة المواعيد</small></div>
-      <div class="footerCity">أمان • صحة • خدمة</div>
-      <div class="footerRibbon"></div>
-    </div>
-  </div>`;
-
-  document.body.appendChild(t);
-  const style=document.createElement("style");
-  style.id="ticketPrintStyle";
-  style.textContent=`
-  #pdfTicket{position:fixed;left:-12000px;top:0;width:794px;background:#fff;direction:rtl;font-family:Tahoma,Arial,sans-serif;color:#12395d}
-  #pdfTicket .ticket{width:794px;height:1120px;box-sizing:border-box;background:#f5fbff;border:1px solid #b9cfdf;overflow:hidden;position:relative}
-  #pdfTicket .hero{height:178px;background:linear-gradient(135deg,#062b4e,#0b426d 55%,#0b5b80);color:#fff;display:grid;grid-template-columns:230px 1fr 80px;align-items:center;padding:0 22px;box-sizing:border-box;position:relative;overflow:hidden}
-  #pdfTicket .hero:after{content:"";position:absolute;right:-80px;bottom:-95px;width:520px;height:180px;border-radius:50%;background:rgba(255,255,255,.06);transform:rotate(-8deg)}
-  #pdfTicket .heroBrand{display:flex;align-items:center;gap:10px;z-index:2}
-  #pdfTicket .brandSeal{width:64px;height:64px;border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:31px;background:rgba(255,255,255,.08)}
-  #pdfTicket .heroBrand b{font-size:18px;display:block}.heroBrand small{font-size:11px;opacity:.9}
-  #pdfTicket .heroTitle{text-align:center;z-index:2}
-  #pdfTicket .heroTitle strong{display:block;font-size:31px;line-height:1.15}
-  #pdfTicket .heroTitle span{display:block;font-size:24px;font-weight:800;margin-top:5px}
-  #pdfTicket .heroTitle small{display:block;font-size:12px;margin-top:8px;opacity:.9}
-  #pdfTicket .flagRibbon{z-index:2;display:flex;flex-direction:column;transform:skewY(-15deg);opacity:.95}
-  #pdfTicket .flagRibbon i{display:block;height:20px}.flagRibbon i:nth-child(1){background:#fff}.flagRibbon i:nth-child(2){background:#111}.flagRibbon i:nth-child(3){background:#168b5b}
-  #pdfTicket .wrap{padding:20px 18px}
-  #pdfTicket .topGrid{display:grid;grid-template-columns:1.35fr 1fr;gap:12px}
-  #pdfTicket .success,#pdfTicket .booking{height:115px;border:1.7px solid #9dbfd3;border-radius:12px;background:#fff;box-sizing:border-box}
-  #pdfTicket .success{border-color:#23855e;display:flex;align-items:center;gap:14px;padding:13px 16px}
-  #pdfTicket .ok{width:68px;height:68px;background:#0a8151;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;flex:none}
-  #pdfTicket .success b{font-size:21px;color:#126b4a;display:block}.success span{font-size:12px;font-weight:700;display:block;margin-top:7px}
-  #pdfTicket .booking{padding:11px 15px;text-align:right}.booking label{display:block;font-size:14px;color:#173e7b;font-weight:900}.booking strong{display:block;font-size:18px;color:#173e7b;margin:4px 0}
-  #pdfTicket .barcode{height:42px;display:flex;align-items:center;gap:2px;overflow:hidden}.barcode i{background:#111;display:block}
-  #pdfTicket .mainGrid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px;margin-top:13px}
-  #pdfTicket .box{border:1.7px solid #a6c9de;border-radius:12px;overflow:hidden;background:#fff}
-  #pdfTicket .boxHead{height:52px;background:linear-gradient(90deg,#123d69,#0a5a8c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:900;gap:9px}
-  #pdfTicket .drow{height:49px;display:grid;grid-template-columns:40px 110px 1fr;align-items:center;border-bottom:1px solid #c9ddea}
-  #pdfTicket .drow:last-child{border-bottom:0;background:#eaf4fb}.drow em{text-align:center;font-style:normal;color:#0b4a7b;font-size:18px}.drow b{font-size:13px;color:#174a7e}.drow span{font-size:14px;font-weight:800;color:#101d29;padding:0 7px}
-  #pdfTicket .drow:last-child span{color:#08774e;font-size:16px}
-  #pdfTicket .rules{padding:11px 16px 5px}.rules p{margin:8px 0;font-size:13px;font-weight:700;color:#163f70}.rules i{font-style:normal;color:#087a4e;font-size:17px;margin-left:6px}
-  #pdfTicket .verify{margin:8px 14px 0;height:205px;border:1px solid #a9cde2;border-radius:10px;display:grid;grid-template-columns:1fr 2px 1fr;align-items:center;padding:12px;box-sizing:border-box}
-  #pdfTicket .qr{width:155px;height:155px;display:grid;grid-template-columns:repeat(13,1fr);margin:auto;border:4px solid #fff;box-shadow:0 0 0 1px #bcd2df}.qr i{background:#fff}.qr i.on{background:#111}
-  #pdfTicket .vline{height:155px;background:#d1e0ea}.downloadBadge{text-align:center}.pdfIcon{width:72px;height:84px;border:2px solid #c92734;border-radius:8px;margin:0 auto 8px;color:#c92734;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:31px;font-weight:900}.pdfIcon small{font-size:16px}.downloadBadge b{display:block;color:#173e7b;font-size:16px}.downloadBadge span{font-size:11px;color:#65798c}
-  #pdfTicket .caption{text-align:center;font-size:10px;font-weight:800;color:#173e7b;padding:5px}
-  #pdfTicket .ticketFooter{height:120px;background:linear-gradient(135deg,#062b4e,#0b466f);color:#fff;position:absolute;left:0;right:0;bottom:0;padding:15px 22px;box-sizing:border-box;overflow:hidden}
-  #pdfTicket .footerText{font-size:20px;font-weight:900}.footerText small{font-size:10px;font-weight:400;opacity:.85}.footerCity{position:absolute;left:28px;bottom:20px;font-size:16px;opacity:.9}.footerRibbon{position:absolute;right:-55px;bottom:-50px;width:310px;height:100px;transform:rotate(-12deg);background:linear-gradient(#ce2939 0 28%,#fff 28% 55%,#111 55% 100%);border-radius:50%}
-  @media print{html,body{margin:0!important;padding:0!important;background:#fff!important}body>*:not(#pdfTicket){display:none!important}#pdfTicket{position:static!important;left:auto!important;top:auto!important;width:794px!important;margin:0 auto!important;display:block!important}}
-  @page{size:A4 portrait;margin:0}
-  `;
-  document.head.appendChild(style);
-  window.print();
-  setTimeout(()=>{t.remove();style.remove()},1200);
+  if(!x)return alert("قم بالاستعلام عن الحجز أولًا.");
+  const idLabel=x.passport?"رقم جواز السفر":"الرقم القومي";
+  const idValue=x.passport||x.national_id||"-";
+  printDocument("تذكرة الحجز", documentHeader("تذكرة الحجز",x.ticket)+`
+    <table>
+      <tr><th>الاسم</th><td>${esc(x.name)}</td></tr>
+      <tr><th>${idLabel}</th><td>${esc(idValue)}</td></tr>
+      <tr><th>رقم الهاتف</th><td>${esc(x.phone)}</td></tr>
+      <tr><th>تاريخ الحجز</th><td>${esc(x.booking_date)}</td></tr>
+      <tr><th>تاريخ الكشف</th><td>${esc(x.exam_date)}</td></tr>
+      <tr><th>مكان الكشف</th><td>${esc(x.exam_place||"حميات العباسية")}</td></tr>
+      <tr><th>الدولة المتوجه إليها</th><td>${esc(x.destination||"-")}</td></tr>
+      <tr><th>حالة الحجز</th><td>${esc(x.status||"محجوز")}</td></tr>
+    </table>
+    <div class="note">يرجى الاحتفاظ بهذه التذكرة وإحضار المستندات المطلوبة إلى مركز الفحص.</div>
+    <div class="sign"><span>تاريخ الإصدار: ${new Date().toLocaleDateString("ar-EG")}</span><span>المبلغ المدفوع: ${esc(x.payment||"غير مسجل")} جنيه</span></div>`);
 }
 
-
-async function loadCurrencyRates(){
-  const usdEl=document.getElementById("usdRate"), jodEl=document.getElementById("jodRate"), timeEl=document.getElementById("ratesTime");
-  try{
-    const res=await fetch("https://open.er-api.com/v6/latest/EGP",{cache:"no-store"});
-    const data=await res.json();
-    if(!data || data.result!=="success") throw new Error("rate");
-    const egpPerUsd=1/data.rates.USD;
-    const egpPerJod=1/data.rates.JOD;
-    usdEl.textContent=egpPerUsd.toFixed(2)+" ج.م";
-    jodEl.textContent=egpPerJod.toFixed(2)+" ج.م";
-    const d=new Date();
-    timeEl.textContent="آخر تحديث "+d.toLocaleTimeString("ar-EG",{hour:"2-digit",minute:"2-digit"});
-  }catch(e){
-    // Fallback to the latest available official customs reference shown by Nafeza.
-    usdEl.textContent="51.50 ج.م";
-    jodEl.textContent="72.73 ج.م";
-    timeEl.textContent="آخر تحديث مرجعي: 24/09/2026";
-  }
+function downloadInvoice(){
+  const x=window.currentAppointment;
+  if(!x)return alert("قم بالاستعلام عن الحجز أولًا.");
+  const amount=Number(x.payment)||0;
+  const idLabel=x.passport?"رقم جواز السفر":"الرقم القومي";
+  const idValue=x.passport||x.national_id||"-";
+  printDocument("فاتورة الحجز", documentHeader("فاتورة الحجز",x.ticket)+`
+    <table>
+      <tr><th>اسم صاحب الحجز</th><td>${esc(x.name)}</td></tr>
+      <tr><th>${idLabel}</th><td>${esc(idValue)}</td></tr>
+      <tr><th>تاريخ الحجز</th><td>${esc(x.booking_date)}</td></tr>
+      <tr><th>تاريخ الكشف</th><td>${esc(x.exam_date)}</td></tr>
+      <tr><th>مكان الكشف</th><td>${esc(x.exam_place||"حميات العباسية")}</td></tr>
+    </table>
+    <h3>تفاصيل الفحص الطبي</h3>
+    <table>
+      <tr><th>الخدمة</th><th>القيمة</th></tr>
+      <tr><td>الفحص الطبي العام</td><td>800 جنيه</td></tr>
+      <tr><td>أشعة الصدر</td><td>200 جنيه</td></tr>
+      <tr><td>الفحوصات المختبرية</td><td>1500 جنيه</td></tr>
+      <tr class="total"><td>إجمالي المبلغ المدفوع</td><td>2500 جنيه</td></tr>
+    </table>
+    `);
 }
-
-async function loadEgyptNews(){
-  const box=document.getElementById("egyptNews");
-  try{
-    const rss="https://news.google.com/rss/search?q="+encodeURIComponent("مصر عندما:1d")+"&hl=ar&gl=EG&ceid=EG:ar";
-    const res=await fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(rss),{cache:"no-store"});
-    const data=await res.json();
-    const items=(data.items||[]).slice(0,5);
-    if(!items.length) throw new Error("news");
-    box.innerHTML=items.map((it,i)=>{
-      const date=it.pubDate?new Date(it.pubDate).toLocaleDateString("ar-EG",{day:"numeric",month:"short"}):"اليوم";
-      return `<article class="newsItem"><span class="newsNo">${i+1}</span><div class="newsText"><a href="${esc(it.link||"#")}" target="_blank" rel="noopener">${esc(it.title||"خبر مصر")}</a><span class="newsMeta">${date}</span></div></article>`;
-    }).join("");
-  }catch(e){
-    box.innerHTML=`
-      <article class="newsItem"><span class="newsNo">1</span><div class="newsText"><a href="#" onclick="return false">تعذر تحديث الأخبار الآن، حاول فتح الصفحة مرة أخرى.</a><span class="newsMeta">تحديث تلقائي</span></div></article>
-      <article class="newsItem"><span class="newsNo">2</span><div class="newsText"><a href="#" onclick="return false">قسم الأخبار جاهز لعرض أحدث العناوين عند توفر الاتصال بالمصدر.</a><span class="newsMeta">أخبار مصر</span></div></article>`;
-  }
-}
-loadCurrencyRates();
-loadEgyptNews();
-setInterval(loadCurrencyRates, 24*60*60*1000);
 </script>
-
-</script></body></html></body></html>
+</body>
+</html>
