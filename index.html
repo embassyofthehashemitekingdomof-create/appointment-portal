@@ -68,6 +68,174 @@ linear-gradient(165deg,transparent 0 45%,#ffffff0b 45% 52%,transparent 52% 100%)
 .medical-results-download p{margin:0 0 14px;color:#5b7185;line-height:1.8}
 .medical-results-download button:disabled{background:#aab8c5;cursor:not-allowed}
 </style>
+
+<style id="mobile-polish-v3">
+/* تحسين العرض على الهاتف والأزرار */
+html{scroll-behavior:smooth}
+button,.btn,input,select{font-family:inherit}
+button,.btn{
+  min-height:46px;
+  border-radius:12px;
+  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;
+}
+button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(10,74,120,.18)}
+button:active,.btn:active{transform:translateY(0);box-shadow:none}
+button:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible{
+  outline:3px solid rgba(14,116,185,.25);outline-offset:2px;
+}
+
+/* أزرار البحث والإجراءات */
+.searchBtn,.btnSearch,[onclick*="search"],button[type="submit"]{
+  font-weight:800;
+  letter-spacing:.1px;
+}
+.btnBlue,.primary,.searchBtn,.btnSearch{
+  background:linear-gradient(135deg,#07548b,#0b72b5)!important;
+  border:1px solid #064b7c!important;
+  color:#fff!important;
+  box-shadow:0 5px 14px rgba(7,84,139,.20);
+}
+.btnBlue:hover,.primary:hover,.searchBtn:hover,.btnSearch:hover{
+  filter:brightness(1.06);
+}
+.btnDanger,.danger{
+  background:linear-gradient(135deg,#b52a32,#d7444c)!important;
+  color:#fff!important;
+  border:1px solid #a8222a!important;
+}
+.btnSuccess,.success{
+  background:linear-gradient(135deg,#08734f,#0b9468)!important;
+  color:#fff!important;
+}
+.btnSecondary,.secondary{
+  background:#fff!important;
+  color:#07548b!important;
+  border:1px solid #bdd2e2!important;
+}
+
+/* الحقول */
+input,select{
+  min-height:46px;
+  border:1px solid #c9d9e5!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  padding:10px 13px!important;
+  box-shadow:0 1px 3px rgba(20,55,80,.04);
+}
+input:focus,select:focus{
+  border-color:#0b72b5!important;
+  box-shadow:0 0 0 4px rgba(11,114,181,.10)!important;
+}
+
+/* جداول وبيانات الاستعلام */
+table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:13px}
+th{font-weight:800}
+td,th{vertical-align:middle}
+.result,.results,.resultBox,.inquiryResults{overflow-x:auto}
+
+/* هاتف */
+@media(max-width:700px){
+  body{font-size:14px;overflow-x:hidden}
+  .topin,.container,.wrap,.content{width:100%;max-width:100%;padding-left:12px!important;padding-right:12px!important}
+  .topin{gap:8px;flex-wrap:wrap}
+  .govBrand{gap:7px}
+  .emblem{width:42px!important;height:48px!important}
+  .emblem img{width:37px!important;height:44px!important}
+  .ministryLogo{width:45px!important;height:45px!important}
+  .govText b{font-size:11px!important}
+  .govText small{font-size:9px!important}
+  .siteTitle b{font-size:15px!important;line-height:1.35}
+  .siteTitle small{font-size:10px!important}
+
+  nav,.nav,.menu{width:100%;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  nav a,.nav a,.menu a{display:inline-flex;min-height:40px;align-items:center;padding:8px 11px}
+
+  .hero{min-height:340px!important;padding:42px 14px!important}
+  .hero h1{font-size:25px!important;line-height:1.45}
+  .hero p{font-size:14px!important;line-height:1.9}
+
+  .features,.cards,.grid,.services,.actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .feature,.card,.service,.action,.panel,.box{
+    width:100%!important;
+    padding:18px 14px!important;
+    border-radius:14px!important;
+  }
+
+  form{width:100%}
+  .form-grid,.row,.fields{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .form-group{width:100%!important}
+  label{display:block;margin-bottom:6px;font-weight:700}
+
+  /* أزرار الإجراء: كبيرة وواضحة للمس */
+  .actions button,.actions .btn,
+  .searchBtn,.btnSearch,
+  button[type="submit"]{
+    width:100%!important;
+    min-height:50px!important;
+    font-size:15px!important;
+  }
+
+  /* بيانات الاستعلام تتحول إلى بطاقات مريحة بدل جدول ضيق */
+  .result table,.results table,.resultBox table,.inquiryResults table{
+    min-width:0!important;
+    display:block;
+    border:0;
+  }
+  .result table tbody,.results table tbody,.resultBox table tbody,.inquiryResults table tbody{
+    display:block;
+  }
+  .result table tr,.results table tr,.resultBox table tr,.inquiryResults table tr{
+    display:grid;
+    grid-template-columns:1fr 1.25fr;
+    margin-bottom:8px;
+    border:1px solid #d7e3eb;
+    border-radius:10px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .result table th,.results table th,.resultBox table th,.inquiryResults table th{
+    background:#edf5fa;
+    border:0;
+    padding:10px;
+    font-size:12px;
+  }
+  .result table td,.results table td,.resultBox table td,.inquiryResults table td{
+    border:0;
+    border-right:1px solid #e1eaf0;
+    padding:10px;
+    font-size:13px;
+    overflow-wrap:anywhere;
+  }
+
+  .medical-results-download{padding:17px!important}
+  .medical-results-download button{width:100%!important;min-height:50px}
+
+  .footer{padding:30px 14px!important}
+}
+
+/* شاشات صغيرة جدًا */
+@media(max-width:380px){
+  .siteTitle b{font-size:14px!important}
+  .hero h1{font-size:22px!important}
+  .hero{min-height:315px!important}
+  .result table tr,.results table tr,.resultBox table tr,.inquiryResults table tr{
+    grid-template-columns:1fr;
+  }
+  .result table td,.results table td,.resultBox table td,.inquiryResults table td{
+    border-right:0;
+    border-top:1px solid #e1eaf0;
+  }
+}
+</style>
+
 </head>
 <body>
 
