@@ -60,6 +60,25 @@ linear-gradient(165deg,transparent 0 45%,#ffffff0b 45% 52%,transparent 52% 100%)
 .hero{min-height:420px;padding:45px 24px}.hero h1{font-size:32px}.hero p{font-size:17px}
 .features,.columns,.form,.searchGrid,.info{grid-template-columns:1fr}.features{padding:25px 16px}.info{margin:0 16px 28px}.page{padding:20px 12px}.nav button{padding:15px 17px;font-size:14px}.row{grid-template-columns:125px 1fr}
 }
+
+/* صفحة الدفع المبدئية */
+.payment-wrap{max-width:920px;margin:0 auto;padding:8px 0 30px}
+.pay-steps{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 24px;color:#65809a;font-weight:800;flex-wrap:wrap}
+.pay-step{display:flex;align-items:center;gap:8px}.pay-step span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#dce9f6;color:#225b91}.pay-step.active{color:#075ca2}.pay-step.active span{background:#075ca2;color:#fff}.step-line{height:2px;width:42px;background:#cbdbea}
+.pay-card{background:#fff;border:1px solid #d8e5f1;border-radius:18px;padding:26px;box-shadow:0 12px 32px #123c5d12}
+.pay-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;background:linear-gradient(120deg,#eff7ff,#f8fbff);border:1px solid #d7e9f9;border-radius:14px;padding:18px 20px;margin-bottom:24px}
+.pay-summary h3{margin:0 0 8px;color:#174b7a}.pay-summary p{margin:4px 0;color:#637b92;font-size:14px}.pay-total{font-size:25px;font-weight:900;color:#0a5e9f;white-space:nowrap}
+.pay-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0 22px}
+.pay-option{position:relative;min-height:150px;border:2px solid #d8e4ef;border-radius:14px;background:#fff;padding:20px 12px;text-align:center;cursor:pointer;transition:.18s;color:#234968}
+.pay-option:hover{border-color:#8bbce7;transform:translateY(-2px)}.pay-option.selected{border-color:#1472bd;background:#f0f8ff;box-shadow:0 0 0 3px #1472bd12}
+.pay-option .pay-icon{font-size:32px;font-weight:900;display:block;margin-bottom:12px;line-height:1.1}.pay-option strong{display:block;font-size:16px;margin-bottom:7px}.pay-option small{color:#72879b;line-height:1.6;display:block}.pay-option .radio{position:absolute;bottom:10px;left:calc(50% - 8px);width:16px;height:16px;border:1.5px solid #8ba4b9;border-radius:50%}.pay-option.selected .radio{border:5px solid #1472bd}
+.pay-visa .pay-icon{color:#17469b;font-style:italic}.pay-vodafone .pay-icon{color:#e62132}.pay-insta .pay-icon{color:#7543c7}
+.pay-secure{display:flex;align-items:flex-start;gap:12px;padding:15px;border-radius:12px;background:#f2f8fd;border:1px solid #d8e9f8;color:#476a88;line-height:1.8;font-size:13px;margin-bottom:18px}.pay-secure b{color:#174b7a;display:block}
+.pay-actions{display:flex;gap:12px;flex-wrap:wrap}.pay-actions .btn{flex:1;min-width:190px}.btnOutline{background:#fff;color:#155d97;border:1px solid #b7d4eb}
+.pay-state{margin-top:16px}.pay-state:empty{display:none}.payment-pending{padding:15px;border-radius:12px;background:#fff7e8;border:1px solid #f1d7a3;color:#82560a;line-height:1.8}
+.manual-payment{margin:14px 0 18px;padding:18px;border:1px solid #c8dff1;border-radius:14px;background:#f5faff;line-height:1.8}.manual-payment[hidden]{display:none}.manual-payment-title{font-weight:900;color:#174b7a;font-size:18px}.manual-payment p{margin:6px 0 12px;color:#526f88}.manual-payment-number{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;background:#fff;border:1px dashed #9bbbd5;border-radius:10px}.manual-payment-number span{font-size:24px;font-weight:900;letter-spacing:1px;color:#075ca2;direction:ltr}.manual-payment small{display:block;color:#7a641d;margin-top:10px}.processing-message{padding:17px;border-radius:12px;background:#edf7ff;border:1px solid #b9d9f2;color:#14588b;line-height:1.9}.processing-message strong{display:block;font-size:19px;margin-bottom:4px}
+@media(max-width:700px){.pay-card{padding:16px}.pay-options{grid-template-columns:1fr;gap:10px}.pay-option{min-height:115px;padding:16px}.pay-summary{align-items:flex-start;flex-direction:column}.pay-total{font-size:23px}.step-line{width:18px}.pay-steps{gap:7px;font-size:12px}}
+
 </style>
 
 <style>
@@ -326,9 +345,35 @@ td,th{vertical-align:middle}
     <div class="field"><label>تاريخ الكشف</label><input name="exam_date" type="date" required></div>
     <div class="field"><label>الدولة المسافر إليها</label><select name="destination"><option value="الأردن">الأردن</option></select></div>
     <div class="field"><label>حالة الموعد</label><select name="status"><option>محجوز</option></select></div>
-    <div class="full"><button class="btn btnBlue" type="submit">حفظ الموعد</button></div>
+    <div class="full"><button class="btn btnBlue" type="submit">حفظ الموعد والمتابعة للدفع</button></div>
   </form>
   <div id="bookMsg"></div>
+</section>
+
+<section id="payment" class="view page">
+  <div class="pageTitle"><h2>إتمام دفع الحجز</h2><p>راجع بيانات الموعد واختر وسيلة الدفع المناسبة.</p></div>
+  <div class="payment-wrap">
+    <div class="pay-steps"><div class="pay-step"><span>✓</span> بيانات الحجز</div><div class="step-line"></div><div class="pay-step active"><span>2</span> الدفع</div><div class="step-line"></div><div class="pay-step"><span>3</span> تأكيد الحجز</div></div>
+    <div class="pay-card">
+      <div class="pay-summary"><div><h3>تفاصيل الحجز</h3><p>رقم التذكرة: <b id="payTicket">سيظهر بعد التسجيل</b></p><p>الاسم: <b id="payName">—</b></p><p>رقم الهوية/الجواز: <b id="payIdentity">—</b></p><p>تاريخ الكشف: <b id="payExamDate">—</b></p></div><div><div style="font-size:13px;color:#607b94;margin-bottom:6px">المبلغ المطلوب</div><div class="pay-total">2,500 جنيه</div></div></div>
+      <h3 style="margin:0;color:#174b7a">اختر وسيلة الدفع</h3>
+      <p style="color:#71869a;line-height:1.8;margin:8px 0 0">اختر الوسيلة التي تفضلها. سيتم تفعيل التحصيل الفعلي بعد ربط بوابة الدفع واعتماد حساب التاجر.</p>
+      <div class="pay-options" role="group" aria-label="وسيلة الدفع">
+        <button type="button" class="pay-option pay-visa" data-method="visa" aria-pressed="false"><span class="pay-icon">VISA</span><strong>فيزا</strong><small>الدفع بالبطاقة البنكية</small><span class="radio"></span></button>
+        <button type="button" class="pay-option pay-vodafone" data-method="vodafone" aria-pressed="false"><span class="pay-icon">● Vodafone</span><strong>فودافون كاش</strong><small>الدفع عبر المحفظة الإلكترونية</small><span class="radio"></span></button>
+        <button type="button" class="pay-option pay-insta" data-method="instapay" aria-pressed="false"><span class="pay-icon">InstaPay</span><strong>إنستا باي</strong><small>التحويل عبر إنستا باي</small><span class="radio"></span></button>
+      </div>
+      <div id="manualPaymentDetails" class="manual-payment" hidden aria-live="polite">
+        <div class="manual-payment-title">بيانات التحويل</div>
+        <p>حوّل مبلغ <b>2,500 جنيه مصري</b> إلى الرقم التالي، ثم اضغط تأكيد لإرسال الطلب للمراجعة.</p>
+        <div class="manual-payment-number"><span id="paymentNumber">01033232916</span><button type="button" id="copyPaymentNumber" class="btn btnOutline">نسخ الرقم</button></div>
+        <small>احتفظ بإيصال التحويل. إدخال الرقم أو الضغط على التأكيد لا يثبت وصول المبلغ تلقائيًا.</small>
+      </div>
+      <div class="pay-secure"><span style="font-size:25px">🛡️</span><div><b>حالة الحجز: في انتظار التحقق</b>لن يتم تأكيد الحجز بمجرد الضغط على زر التأكيد. سيظل الطلب قيد المعالجة إلى أن يتم التحقق من وصول المبلغ فعليًا.</div></div>
+      <div class="pay-actions"><button class="btn btnBlue" type="button" id="continuePayment">متابعة الدفع 🔒</button><button class="btn btnOutline" type="button" onclick="showView('book')">العودة لبيانات الحجز</button></div>
+      <div id="payMsg" class="pay-state" aria-live="polite"></div>
+    </div>
+  </div>
 </section>
 
 <section id="search" class="view page">
@@ -354,7 +399,7 @@ td,th{vertical-align:middle}
   <div class="pageTitle"><h2>دليل المستخدم</h2><p>خطوات بسيطة لاستخدام البوابة.</p></div>
   <div class="card">
     <p>1. اختر «حجز موعد جديد» وأدخل البيانات المطلوبة.</p>
-    <p>2. احتفظ برقم التذكرة بعد نجاح الحجز.</p>
+    <p>2. بعد تسجيل البيانات، اختر وسيلة الدفع؛ ويظل الحجز في انتظار الدفع حتى التحقق من السداد.</p>
     <p>3. من «الاستعلام عن الحجز» يمكنك البحث بأي وسيلة متاحة.</p>
     <p>4. بعد ظهور الحجز يمكنك إلغاؤه بعد إدخال كلمة المرور.</p>
   </div>
@@ -410,6 +455,8 @@ $$(".idChoice button").forEach(btn=>{
   });
 });
 
+let currentPaymentBooking=null;
+let selectedPaymentMethod="";
 $("#bookForm").addEventListener("submit",async e=>{
   e.preventDefault();
   const x=Object.fromEntries(new FormData(e.target));
@@ -420,23 +467,63 @@ $("#bookForm").addEventListener("submit",async e=>{
   if(x.id_type==="national_id"&&!validNationalId(x.id_number))return $("#bookMsg").innerHTML='<div class="notice error">الرقم القومي يجب أن يتكون من 14 رقمًا.</div>';
   if(!validPhone(x.phone))return $("#bookMsg").innerHTML='<div class="notice error">رقم الهاتف غير صحيح.</div>';
   if(x.exam_date<x.booking_date)return $("#bookMsg").innerHTML='<div class="notice error">تاريخ الكشف لا يمكن أن يكون قبل تاريخ الحجز.</div>';
+  const submit=e.target.querySelector('button[type="submit"]');
+  submit.disabled=true;submit.textContent="جارٍ تسجيل البيانات…";
   try{
     const d=await supabaseRpc("create_appointment",{
       p_name:x.name,p_id_type:x.id_type,p_id_number:x.id_number,
       p_phone:x.phone,p_booking_date:x.booking_date,p_exam_date:x.exam_date,
-      p_destination:x.destination,p_status:x.status,p_password:x.password
+      p_destination:x.destination,p_status:"في انتظار الدفع",p_password:x.password
     });
     const row=Array.isArray(d)?d[0]:d;
+    currentPaymentBooking={...x,ticket:row.ticket||row.code||row.ticket_number||"",status:row.status||"في انتظار الدفع"};
+    $("#payTicket").textContent=currentPaymentBooking.ticket||"قيد التوليد";
+    $("#payName").textContent=x.name;
+    $("#payIdentity").textContent=x.id_number;
+    $("#payExamDate").textContent=x.exam_date;
+    $("#payMsg").innerHTML="";selectedPaymentMethod="";
+    $$(".pay-option").forEach(b=>{b.classList.remove("selected");b.setAttribute("aria-pressed","false")});
     e.target.reset();
     $("#idType").value="passport";
     $$(".idChoice button").forEach(b=>b.classList.toggle("selected",b.dataset.idtype==="passport"));
     $("#idNumberLabel").textContent="رقم جواز السفر";
     $("#idNumber").placeholder="أدخل رقم الجواز مثل A12345678";
-    $("#bookMsg").innerHTML=`<div class="notice success">✓ تم حفظ الموعد بنجاح.<br>رقم التذكرة: <strong>${esc(row.ticket)}</strong></div>`;
+    $("#bookMsg").innerHTML='<div class="notice success">تم تسجيل البيانات مبدئيًا. الحجز في انتظار الدفع ولم يتم تأكيده بعد.</div>';
+    showView("payment");
   }catch(err){$("#bookMsg").innerHTML=`<div class="notice error">${esc(err.message)}</div>`}
+  finally{submit.disabled=false;submit.textContent="حفظ الموعد والمتابعة للدفع"}
+});
+
+$$(".pay-option").forEach(btn=>btn.addEventListener("click",()=>{
+  selectedPaymentMethod=btn.dataset.method;
+  $$(".pay-option").forEach(b=>{const on=b===btn;b.classList.toggle("selected",on);b.setAttribute("aria-pressed",String(on))});
+  $("#payMsg").innerHTML="";
+  $("#continuePayment").disabled=false;
+  $("#continuePayment").textContent=(selectedPaymentMethod==="vodafone"||selectedPaymentMethod==="instapay")?"تأكيد التحويل وإرسال للمراجعة":"متابعة الدفع 🔒";
+  $("#manualPaymentDetails").hidden=!(selectedPaymentMethod==="vodafone"||selectedPaymentMethod==="instapay");
+}));
+$("#copyPaymentNumber").addEventListener("click",async()=>{
+  const number=$("#paymentNumber").textContent.trim();
+  try{await navigator.clipboard.writeText(number);$("#copyPaymentNumber").textContent="تم النسخ ✓";}
+  catch(e){const range=document.createRange();range.selectNodeContents($("#paymentNumber"));const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);$("#copyPaymentNumber").textContent="حدد الرقم لنسخه";}
+});
+$("#continuePayment").addEventListener("click",()=>{
+  if(!currentPaymentBooking){$("#payMsg").innerHTML='<div class="notice error">ابدأ بتسجيل بيانات الحجز أولًا.</div>';return}
+  if(!selectedPaymentMethod){$("#payMsg").innerHTML='<div class="notice error">اختر وسيلة الدفع أولًا.</div>';return}
+  const names={visa:"فيزا",vodafone:"فودافون كاش",instapay:"إنستا باي"};
+  if(selectedPaymentMethod==="vodafone"||selectedPaymentMethod==="instapay"){
+    $("#payMsg").innerHTML='<div class="processing-message" role="status"><strong>⏳ جاري معالجة الطلب</strong>تم إرسال طلب مراجعة الدفع مبدئيًا. الحجز لم يتأكد بعد، وسيظل في انتظار التحقق من وصول مبلغ 2,500 جنيه فعليًا.</div>';
+    $("#continuePayment").disabled=true;
+    $("#continuePayment").textContent="الطلب قيد المعالجة";
+    return;
+  }
+  $("#payMsg").innerHTML=`<div class="payment-pending"><b>تم اختيار ${names[selectedPaymentMethod]}.</b><br>الدفع بالبطاقة غير مفعّل حتى الآن لعدم ربط بوابة دفع. لم يتم خصم أي مبلغ ولم يتأكد الحجز.</div>`;
 });
 
 async function searchAppointment(){
+  // امسح أي نتيجة سابقة قبل البحث حتى لا تبقى بيانات الحجز القديم ظاهرة.
+  $("#result").innerHTML="";
+  window.currentAppointment=null;
   const q=normalize($("#query").value),type=$("#searchType").value;
   if(!q)return $("#result").innerHTML='<div class="notice error">أدخل بيانات البحث.</div>';
   if(type==="passport"&&!validPassport(q))return $("#result").innerHTML='<div class="notice error">رقم الجواز غير صحيح.</div>';
@@ -447,6 +534,13 @@ async function searchAppointment(){
     const d=await supabaseRpc("search_appointment",{p_query:q});
     const x=Array.isArray(d)?d[0]:d;
     if(!x)throw new Error("لا يوجد حجز مطابق");
+    // لا تعرض أي بيانات شخصية إذا كان الحجز ملغى؛ اعرض رسالة فقط.
+    const normalizedStatus=String(x.status||"").trim().replace(/[أإآ]/g,"ا");
+    if(["ملغى","ملغي","تم الالغاء","تم إلغاء الحجز","الغاء"].includes(normalizedStatus)){
+      window.currentAppointment=null;
+      $("#result").innerHTML='<div class="notice success" role="status" style="padding:22px;text-align:center;font-size:18px;font-weight:800">⚠️ هذا الحجز تم إلغاؤه، ولا توجد بيانات لعرضها.</div>';
+      return;
+    }
     window.currentAppointment=x;
     const label=x.passport?"رقم الجواز":"الرقم القومي";
     const value=x.passport||x.national_id||"-";
@@ -519,9 +613,9 @@ async function cancelAppointment(){
   try{
     await supabaseRpc("cancel_appointment",{p_ticket:x.ticket,p_password:password});
     x.status="ملغى";
-    const s=$("#result .status");if(s)s.textContent="ملغى";
-    const b=$("#result .btnRed");if(b){b.disabled=true;b.textContent="تم إلغاء الحجز";}
-    $("#result").insertAdjacentHTML("beforeend",'<div class="notice success">✓ تم إلغاء الحجز بنجاح.</div>');
+    // بعد نجاح الإلغاء، أخفِ بيانات الحجز بالكامل واعرض رسالة التنبيه فقط.
+    $("#result").innerHTML='<div class="notice success" role="status" style="padding:22px;text-align:center;font-size:18px;font-weight:800">⚠️ تم إلغاء الحجز بنجاح.</div>';
+    window.currentAppointment=null;
   }catch(err){alert(err.message||"تعذر إلغاء الحجز.")}
 }
 
