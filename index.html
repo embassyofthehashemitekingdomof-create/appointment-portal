@@ -510,19 +510,27 @@ function updateMedicalResultsButton(){
 }
 
 async function cancelAppointment(){
-  const x=window.currentAppointment;if(!x)return;
-  if((x.status||"").trim()==="ملغى")return alert("هذا الحجز ملغى بالفعل.");
+  const x=window.currentAppointment;
+  if(!x)return;
   const password=prompt("أدخل كلمة المرور لإلغاء الحجز:");
   if(password===null)return;
   if(!password)return alert("يجب إدخال كلمة المرور.");
-  if(!confirm("هل أنت متأكد من إلغاء هذا الحجز؟"))return;
+  if(!confirm("هل أنت متأكد من إلغاء هذا الحجز نهائيًا؟"))return;
+
   try{
-    await supabaseRpc("cancel_appointment",{p_ticket:x.ticket,p_password:password});
-    x.status="ملغى";
-    const s=$("#result .status");if(s)s.textContent="ملغى";
-    const b=$("#result .btnRed");if(b){b.disabled=true;b.textContent="تم إلغاء الحجز";}
-    $("#result").insertAdjacentHTML("beforeend",'<div class="notice success">✓ تم إلغاء الحجز بنجاح.</div>');
-  }catch(err){alert(err.message||"تعذر إلغاء الحجز.")}
+    await supabaseRpc("cancel_appointment",{
+      p_ticket:x.ticket,
+      p_password:password
+    });
+
+    // إزالة بيانات الحجز من الذاكرة والواجهة بعد نجاح الحذف من قاعدة البيانات
+    window.currentAppointment=null;
+    $("#result").innerHTML=
+      '<div class="notice success" role="status">✓ تم إلغاء الحجز وحذف بياناته بنجاح.</div>';
+
+  }catch(err){
+    alert(err.message||"تعذر إلغاء الحجز.");
+  }
 }
 
 function printDocument(title, bodyHtml){
